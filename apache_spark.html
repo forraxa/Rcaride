@@ -99,7 +99,7 @@
         <ul class="nav nav-list bs-docs-sidenav">
           <li><a href="#fundamentos-head">1. Fundamentos</a></li>
           <li><a href="#instalacion-head">2. Instalación</a></li>
-          <li><a href="#jupyter-notebook">3. Jupyter</a></li>
+          <li><a href="#rdd-dataframe">3. RDD, DataFrame y Dataset</a></li>
           
         </ul>
       </div>
@@ -107,7 +107,7 @@
 
 
 
-        <!-- Download
+        <!-- Fundamentos
         ================================================== -->
         <section id="fundamentos-head">
           <div class="page-header">
@@ -137,10 +137,15 @@
           <p class="lead">Arquitectura de Spark</p>
             <img src="assets/img/arquitectura-spark.png" alt=""/>
           <hr>
-          <p class="lead">Spark Context</p>
+          <p class="lead">SparkContext</p>
+          <p>Es el objeto que especifica como vamos a acceder a nuestro cluster</p>
           <p>Es el contexto donde se crean las variables en Spark</p>
           <p>Se instancia con la variable "sc" (no todos los entornos)</p>
-          <p>Se puede modificar la configuración desde "SparkConf"</p>
+          <p>La creación de un objeto <strong>SparkContext</strong> lleva implicitamente un objeto <strong>SparkConf</strong></p>
+          
+          <hr>
+           <p class="lead">SparkConf</p>
+          <p>Este objeto contien la información sobre nuestra aplicación.</p>
           <hr>
           <p class="lead">Cluster Manager - Gestores de recursos.</p>
           <ul>
@@ -175,7 +180,7 @@
 
 
 
-        <!-- Contents
+        <!-- Instalación
         ================================================== -->
         <section id="instalacion-head">
           <div class="page-header">
@@ -208,26 +213,33 @@
           <ol>
             <li><p>Clonar o descargar la máquina Virtual,  <a href="https://github.com/paulovn/ml-vm-notebook">Descargar</a></p></li>
             <li>Abrir un terminal y situarnos dentro de la carpeta donde hayamos descomprimido la máquina virtual, dentro de la carpeta encontraremos el fichero <strong> Vagrantfile</strong></li>
-            <li>Ejecutamos<strong> sudo vagrant up</strong> para levantar la máquina<p>Esto preparará la máquina virtual y lanzará el notebook de Jupyter en el puerto 8008.</p><p>La contraseña para entrar es "<strong>vmuser</strong>"</p></li>
+            <li>Ejecutamos<strong>vagrant up</strong> para levantar la máquina<p>Esto preparará la máquina virtual y lanzará el notebook de Jupyter en el puerto 8008.</p><p>La contraseña para entrar es "<strong>vmuser</strong>"</p></li>
           </ol>
           <p><strong>vagrant halt</strong> pausa la VM</p>
           <p><strong>vagrant destroy</strong> Elimina la instalación de la VM</p>
           <p>Editar <strong>vagrantfile</strong> para modificar la configuración de la VM</p>
-          <p><strong>sudo vagrant ssh</strong> para acceso a un terminal de la VM</p>
+          <p><strong>vagrant ssh</strong> para acceso a un terminal de la VM</p>
           <hr>
-          <p>Cuando se levante la máquina se ejecutará automaticamente el notebook</p>
+          <p><strong>http://localhost:8008</strong> para acceder al notebook</p>
           <p><strong>http://localhost:4040/</strong> para monitorizar los jobs lanzados en Spark</p>
 
           
         </section>
 
 
-        <!-- Examples
+        <!-- RDD, Dataframe y Dataset
         ================================================== -->
-        <section id="jupyter-notebook">
+        <section id="rdd-dataframe">
           <div class="page-header">
-            <h1>3. Jupyter notebook</h1>
-          </div>          
+            <h1>3. RDD, DataFrame y Dataset</h1>
+          </div> 
+          <h2>3.1 RDDs</h2>
+          <p>Los RDD son los datos que se han leido y se han particionado en los nodos del cluster que se crea en la memoria</p>
+          <p>Los orígenes de los datos pueden ser diversos pero una fuente de datos muy común es HDFS</p>
+          <div class="scala">
+            
+            
+          </div>         
         </section>
       </div>
     </div>
