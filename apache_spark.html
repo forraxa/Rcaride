@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <title>Rcaride</title>
+      <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <meta name="description" content="Rcaride apuntes" />
+      <meta name="keywords" content="R, Rstudio, spark, hadoop, mongodb, datawarehouse, pentaho, python, big data, machine learning" />
+      <meta name="author" content="Roberto Caride"/>
+      <!-- <link rel="publisher" href="https://plus.google.com/117689250782136016574"> -->
+
+      <!-- Le styles -->
+      <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+      <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+      <!--[if IE 7]>
+      <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css">
+      <![endif]-->
+
+      <link href="assets/css/bootplus.css" rel="stylesheet">
+      <link href="assets/css/bootplus-responsive.css" rel="stylesheet">
+
+      <link href="assets/css/docs.css" rel="stylesheet">
+      <link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+
+      <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+      <!--[if lt IE 9]>
+        <script src="assets/js/html5shiv.js"></script>
+      <![endif]-->
+
+      <!-- Le fav and touch icons -->
+      <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="assets/ico/favicon.png">
+
+      <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-3182578-9']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+      </script>
+  </head>
+
+
+
+
+<body data-spy="scroll" data-target=".bs-docs-sidebar">
+
+    <!-- Navbar
+    ================================================== -->
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="./index.html">Rcaride</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active">
+                <a href="./index.html">Inicio</a>
+              </li>
+             
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- Subhead
+================================================== -->
+<header class="jumbotron subhead masthead" id="overview">
+  <div class="container">
+    <h1>Apuntes, análisis y proyectos</h1>
+    <p class="lead">R, spark, hadoop, mongodb, datawarehouse, pentaho, python, big data, machine learning...</p>
+  </div>
+</header>
+
+
+  <div class="container">
+
+    <!-- Docs nav
+    ================================================== -->
+    <div class="row">
+      <div class="span3 bs-docs-sidebar">
+        <ul class="nav nav-list bs-docs-sidenav">
+          <li><a href="#fundamentos-head">1. Fundamentos</a></li>
+          <li><a href="#instalacion-head">2. Instalación</a></li>
+          <li><a href="#jupyter-notebook">3. Jupyter</a></li>
+          
+        </ul>
+      </div>
+      <div class="span9">
+
+
+
+        <!-- Download
+        ================================================== -->
+        <section id="fundamentos-head">
+          <div class="page-header">
+            <h1>1. Fundamentos</h1>
+          </div>
+          <p class="lead">SPARK: Sistema de computación de datos.</p>
+
+          <ul>
+            <li>Se integra a la perfección con Hadoop</li>
+            <li>Trabaja en memoria y disco aunque su máximo rendimiento lo obtiene en memoria, hasta 100 veces más rápido</li>
+            <li>Tiene API Java, Python, Scala, R</li>
+            <li>Spark permite el procesamiento en casi tiempo real (mini batch)</li>
+            <li><strong>RDD:</strong> Resilient Distributed Dataset.<p>Son los datos distribuidos en memoria</p></li>
+            <li>Usa evaluación perezosa.<p>No ejecuta el código en las transformación, sólo en las acciones sobre los datos</p></li>
+          </ul>
+          <hr>
+          <p class="lead">Componentes principales.</p>
+          <ul>
+            <li>Spark Core: Base donde se apoyan los demás componentes</li>
+            <li>Spark SQL: Procesamiento de datos estructurados y semi-estructurados</li>
+            <li>Spark Streaming: Procesamineto de datos en tiempo casi real</li>
+            <li>Spark MLlib (machine learning): Librería de Machine Learning</li>
+            <li>Spark GraphX: Procesamineto de grafos.<p>DAG: Grafo asíncrono dirigido</p></li>
+          </ul>
+          <img src="assets/img/spark-stack.png" alt=""/>
+          <hr>
+          <p class="lead">Arquitectura de Spark</p>
+            <img src="assets/img/arquitectura-spark.png" alt=""/>
+          <hr>
+          <p class="lead">Spark Context</p>
+          <p>Es el contexto donde se crean las variables en Spark</p>
+          <p>Se instancia con la variable "sc" (no todos los entornos)</p>
+          <p>Se puede modificar la configuración desde "SparkConf"</p>
+          <hr>
+          <p class="lead">Cluster Manager - Gestores de recursos.</p>
+          <ul>
+            <li><strong>Standalone:</strong> Viene incluido en Spark (es muy sencillo)</li>
+            <li><strong>Mesos:</strong> Gestor de recursos de Spark, puede ejecutar Hadoop, Map Reduce y aplicaciones de servicio</li>
+            <li><strong>YARN:</strong> Gestor de recursos propio de Hadoop 2, puede ser utilizado por SPARK </li>
+          </ul>
+          <hr>
+          <p class="lead">Executors</p>
+          <p>Son los encargados de ejecutar las <strong>tareas o task</strong> en los nodos del cluster a petición del <strong>Cluster Manager</strong></p>
+          <hr>
+          <p class="lead">RDD Resilient Distributed Datasets</p>
+          <p>Conjunto de datos distribuidos en memoria donde la memoria está configurada a modo de un cluster por lo que el tratamiento de los datos se realiza de forma paralela, rápida y tolerante a fallos.</p>
+
+          <h4>Tipos de RDD según su origen:</h4>
+          <ul>
+            <li><strong>Colecciones paralelizadas:</strong> basadas en colecciones de Scala</li>
+            <li><strong>Datasets de Hadoop:</strong> creados a partir de ficheros almacenados en HDFS.</li>
+          </ul>
+            <h4>Tipos de operaciones sobre un RDD:</h4>
+          <ul>
+            <li><strong>Transformaciones:</strong> Crean nuevos conjutos de datos</li>
+              <ul>
+                <li><strong>Narrow:</strong> Las transformaciones se han de realizar mezclando distintas particiones.<p>filter(), sample(), map(), flatmap()</p></li>
+                <li><strong>Wide:</strong> Las transformaciones se realizan en la su propia partición.<p>groupByKey(), reduceByKey()</p></li>
+              </ul>
+            <li><strong>Acciones:</strong> Devuelven el valor al driver del cluster tras realizar un computo sobre los datos.<p>reduce(), collect(), count(), first(), take()</p></li>
+          </ul>
+
+
+        </section>
+
+
+
+        <!-- Contents
+        ================================================== -->
+        <section id="instalacion-head">
+          <div class="page-header">
+            <h1>2. Instalación</h1>
+          </div>
+          <p class="lead">3 modalidades de instalación.</p>
+          <ul>
+            <li><strong>Standalone:</strong> <p>Spark + HDFS</p></li>
+            <li><strong>Hadoop V1:</strong> <p>Spark + Map Reduce + HDFS</p></li>
+            <li><strong>Hadoop V2:</strong> <p>Spark + YARN/Mesos + HDFS</p></li>
+          </ul>
+          <hr>
+          <p class="lead">Instalación de Standalone.</p>
+
+          <p>Se instalará a partir de una Máquina Virtual de 64bits con Ubuntu 16.04.</p>
+          <p>La máquina incluye:</p>
+          <ul>
+            <li>Apache Spark 2.2</li>
+            <li>Python 3.5.2</li>
+            <li>Jupyter Notebook</li>
+            <li>Notebook Spark con Kernel para Python 3.5, Scala (SPylon) y R (IRKernel)</li>
+          </ul>
+          <p>Para instalar la VM se necesita:</p>
+          <ul>
+            <li><a href="https://www.virtualbox.org/">Virtualbox</a> 5.0 o superior.</li>
+            <li><a href="https://www.vagrantup.com/">Vagrant</a> 1.8 o superior.</li>
+          </ul>
+          <hr>
+          <p class="lead">Proceso de instalación.</p>
+          <ol>
+            <li><p>Clonar o descargar la máquina Virtual,  <a href="https://github.com/paulovn/ml-vm-notebook">Descargar</a></p></li>
+            <li>Abrir un terminal y situarnos dentro de la carpeta donde hayamos descomprimido la máquina virtual, dentro de la carpeta encontraremos el fichero <strong> Vagrantfile</strong></li>
+            <li>Ejecutamos<strong> sudo vagrant up</strong> para levantar la máquina<p>Esto preparará la máquina virtual y lanzará el notebook de Jupyter en el puerto 8008.</p><p>La contraseña para entrar es "<strong>vmuser</strong>"</p></li>
+          </ol>
+          <p><strong>vagrant halt</strong> pausa la VM</p>
+          <p><strong>vagrant destroy</strong> Elimina la instalación de la VM</p>
+          <p>Editar <strong>vagrantfile</strong> para modificar la configuración de la VM</p>
+          <p><strong>sudo vagrant ssh</strong> para acceso a un terminal de la VM</p>
+          <hr>
+          <p>Cuando se levante la máquina se ejecutará automaticamente el notebook</p>
+          <p><strong>http://localhost:4040/</strong> para monitorizar los jobs lanzados en Spark</p>
+
+          
+        </section>
+
+
+        <!-- Examples
+        ================================================== -->
+        <section id="jupyter-notebook">
+          <div class="page-header">
+            <h1>3. Jupyter notebook</h1>
+          </div>          
+        </section>
+      </div>
+    </div>
+  </div>
+
+
+
+   <!-- Footer
+    ================================================== -->
+    <footer class="footer">
+      <div class="container">
+        <p>Roberto Caride, <a href="mailto:forraxa@gmail.com">forraxa@gmail.com</a> </p>
+        <p><a href="https://www.youtube.com/channel/UCI1EBKWrqdVqcGMlbLVSYjA?view_as=subscriber" target="_blank">Canal youtube</a> </p>
+      </div>
+    </footer>
+
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/bootstrap-transition.js"></script>
+    <script src="assets/js/bootstrap-alert.js"></script>
+    <script src="assets/js/bootstrap-modal.js"></script>
+    <script src="assets/js/bootstrap-dropdown.js"></script>
+    <script src="assets/js/bootstrap-scrollspy.js"></script>
+    <script src="assets/js/bootstrap-tab.js"></script>
+    <script src="assets/js/bootstrap-tooltip.js"></script>
+    <script src="assets/js/bootstrap-popover.js"></script>
+    <script src="assets/js/bootstrap-button.js"></script>
+    <script src="assets/js/bootstrap-collapse.js"></script>
+    <script src="assets/js/bootstrap-carousel.js"></script>
+    <script src="assets/js/bootstrap-typeahead.js"></script>
+    <script src="assets/js/bootstrap-affix.js"></script>
+
+    <script src="assets/js/holder/holder.js"></script>
+    <script src="assets/js/google-code-prettify/prettify.js"></script>
+
+    <script src="assets/js/application.js"></script>
+
+
+    <!-- Analytics
+    ================================================== -->
+    <script>
+      var _gauges = _gauges || [];
+      (function() {
+        var t   = document.createElement('script');
+        t.type  = 'text/javascript';
+        t.async = true;
+        t.id    = 'gauges-tracker';
+        t.setAttribute('data-site-id', '4f0dc9fef5a1f55508000013');
+        t.src = '//secure.gaug.es/track.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(t, s);
+      })();
+    </script>
+
+  </body>
+</html>

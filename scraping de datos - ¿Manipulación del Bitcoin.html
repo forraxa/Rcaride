@@ -159,17 +159,15 @@ options(scipen=999)</code></pre>
 <h3>Captura de la tabla que contine el número de wallets con más de 1000 BTC</h3>
 <p>Captura de las wallets con mas bitcoins:<br />
 - Identificación y captura de datos desde la web hasta el software R con las wallets que poseen más de 1000 BTC.</p>
-<pre class="r"><code># url &lt;- &quot;https://bitinfocharts.com/top-100-richest-bitcoin-addresses.html&quot; 
-sRvest &lt;- read_html(url)# 
+<pre class="r"><code>url &lt;- &quot;https://bitinfocharts.com/top-100-richest-bitcoin-addresses.html&quot; 
+sRvest &lt;- read_html(url) 
 temp &lt;- html_nodes(sRvest, &quot;table&quot;) 
 distribucion &lt;- html_table(temp[[1]]) </code></pre>
 <hr />
 </div>
 <div id="capturar-las-direcciones-wallets-con-mas-de-1000-btc" class="section level3">
 <h3>Capturar las direcciones wallets con más de 1000 BTC</h3>
-<pre class="r"><code>#capturar las direcciones wallets con más de 1000 BTC
-
-#creación contenedor de wallets
+<pre class="r"><code>#creación contenedor de wallets
 wallets &lt;- data.frame()
  
 #capturar las 100 primeras wallets 
