@@ -134,6 +134,11 @@
                 6. Persistencia y acumuluadores
               </a>
             </li>
+            <li>
+              <a href="#dataframe-dataset">
+                7. Dataframe y Dataset
+              </a>
+            </li>
           </ul>
         </div>
         <div class="span9">
@@ -541,61 +546,101 @@
             <div class="row">
               <div class="span4">
                 <div class="row">
-                  <p style="margin-left:30px"><strong>Transformaciones:</strong></p>
+                  <p style="margin-left:30px">
+                    <strong>
+                      Transformaciones:
+                    </strong>
+                  </p>
                   <div class="span1">
                     <ul>
-                     <li>map</li>
-                     <li>filter</li>
-                     <li>flatMap</li>
-                     <li>union</li>
-                     <li>intersection</li>
-                     <li>distinct</li>
-                   </ul>
+                      <li>
+                        map
+                      </li>
+                      <li>
+                        filter
+                      </li>
+                      <li>
+                        flatMap
+                      </li>
+                      <li>
+                        union
+                      </li>
+                      <li>
+                        intersection
+                      </li>
+                      <li>
+                        distinct
+                      </li>
+                    </ul>
                   </div>
                   <div class="span1">
                     <ul>
-                     <li>groupByKey</li>
-                     <li>reduceByKey</li>
-                     <li>sortByKey</li>
-                     <li>join</li>
-                     <li>cogroup</li>
-                     <li>coalesce</li>
-                   </ul>
+                      <li>
+                        groupByKey
+                      </li>
+                      <li>
+                        reduceByKey
+                      </li>
+                      <li>
+                        sortByKey
+                      </li>
+                      <li>
+                        join
+                      </li>
+                      <li>
+                        cogroup
+                      </li>
+                      <li>
+                        coalesce
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
-
-
-
               <div class="span4">
                 <div class="row">
-                  <p><strong>Acciones:</strong></p>
+                  <p>
+                    <strong>
+                      Acciones:
+                    </strong>
+                  </p>
                   <div class="span1">
                     <ul>
-                     <li>reduce</li>
-                     <li>collect</li>
-                     <li>count</li>
-                     <li>first</li>
-                     <li>take</li>
-                   </ul>
+                      <li>
+                        reduce
+                      </li>
+                      <li>
+                        collect
+                      </li>
+                      <li>
+                        count
+                      </li>
+                      <li>
+                        first
+                      </li>
+                      <li>
+                        take
+                      </li>
+                    </ul>
                   </div>
                   <div class="span1">
                     <ul>
-                     <li>saveAsTextFile</li>
-                     <li>max, min...</li>
-                     <li>countByKey</li>
-                     <li>foreach</li>
-                   </ul>
+                      <li>
+                        saveAsTextFile
+                      </li>
+                      <li>
+                        max, min...
+                      </li>
+                      <li>
+                        countByKey
+                      </li>
+                      <li>
+                        foreach
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
-              
-
-
-
-
-
-
             </div>
             <hr>
               <p>
@@ -963,1133 +1008,1370 @@ res5: Array[String] = Array(El perro de San Roque no tiene rabo porque Ramon Ram
               </h1>
             </div>
             <div class="codigo-scala">
-              <div tabindex="-1" id="notebook" class="border-box-sizing">
-    <div id="notebook-container">
-
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">//importamos SparkConf, SparkContext, RDD</span>
+              <div class="border-box-sizing" id="notebook" tabindex="-1">
+                <div id="notebook-container">
+                  <div class="cell border-box-sizing code_cell rendered">
+                    <div class="input">
+                      <div class="prompt input_prompt">
+                        In [1]:
+                      </div>
+                      <div class="inner_cell">
+                        <div class="input_area">
+                          <div class=" highlight hl-scala">
+                            <pre><span></span><span class="c1">//importamos SparkConf, SparkContext, RDD</span>
 <span class="k">import</span> <span class="nn">org.apache.spark.SparkConf</span> 
 <span class="k">import</span> <span class="nn">org.apache.spark.SparkContext</span>
 <span class="k">import</span> <span class="nn">org.apache.spark.rdd.RDD</span>
 
 <span class="c1">//creación de un array</span>
-<span class="k">val</span> <span class="n">cadenas</span> <span class="k">=</span> <span class="nc">Array</span><span class="o">(</span><span class="s">&quot;spark&quot;</span><span class="o">,</span> <span class="s">&quot;hadoop&quot;</span><span class="o">,</span> <span class="s">&quot;hdfs&quot;</span><span class="o">,</span> <span class="s">&quot;spark&quot;</span><span class="o">,</span> <span class="s">&quot;hdfs&quot;</span><span class="o">)</span>
+<span class="k">val</span> <span class="n">cadenas</span> <span class="k">=</span> <span class="nc">Array</span><span class="o">(</span><span class="s">"spark"</span><span class="o">,</span> <span class="s">"hadoop"</span><span class="o">,</span> <span class="s">"hdfs"</span><span class="o">,</span> <span class="s">"spark"</span><span class="o">,</span> <span class="s">"hdfs"</span><span class="o">)</span>
 
 <span class="c1">//paralelización del RDD cadenas</span>
 <span class="k">val</span> <span class="n">cadenasRDD</span> <span class="k">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="o">(</span><span class="n">cadenas</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-
-
-<div class="output_text output_subarea ">
-<pre>Intitializing Scala interpreter ...</pre>
-</div>
-
-</div>
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-
-
-<div class="output_text output_subarea ">
-<pre>Spark Web UI available at http://10.0.2.15:4040
-SparkContext available as &#39;sc&#39; (version = 2.3.0, master = local[*], app id = local-1531853649819)
-SparkSession available as &#39;spark&#39;
 </pre>
-</div>
-
-</div>
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[1]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>import org.apache.spark.SparkConf
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="output_wrapper">
+                      <div class="output">
+                        <div class="output_area">
+                          <div class="prompt">
+                          </div>
+                          <div class="output_text output_subarea ">
+                            <pre>Intitializing Scala interpreter ...</pre>
+                          </div>
+                        </div>
+                        <div class="output_area">
+                          <div class="prompt">
+                          </div>
+                          <div class="output_text output_subarea ">
+                            <pre>Spark Web UI available at http://10.0.2.15:4040
+SparkContext available as 'sc' (version = 2.3.0, master = local[*], app id = local-1531853649819)
+SparkSession available as 'spark'
+</pre>
+                          </div>
+                        </div>
+                        <div class="output_area">
+                          <div class="prompt output_prompt">
+                            Out[1]:
+                          </div>
+                          <div class="output_text output_subarea output_execute_result">
+                            <pre>import org.apache.spark.SparkConf
 import org.apache.spark.SparkContext
 import org.apache.spark.rdd.RDD
 cadenas: Array[String] = Array(spark, hadoop, hdfs, spark, hdfs)
-cadenasRDD: org.apache.spark.rdd.RDD[String] = ParallelCollectionRDD[0] at parallelize at &lt;console&gt;:34
+cadenasRDD: org.apache.spark.rdd.RDD[String] = ParallelCollectionRDD[0] at parallelize at <console>:34
 </pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<p><strong>Funciones de transformación.<br>
-map():</strong> Aplica una función a cada elemento del RDD.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">//convertir a mayúsculas cada palabra</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing text_cell rendered">
+                    <div class="prompt input_prompt">
+                    </div>
+                    <div class="inner_cell">
+                      <div class="text_cell_render border-box-sizing rendered_html">
+                        <hr>
+                          <p>
+                            <strong>
+                              Funciones de transformación.
+                              <br>
+                                map():
+                              </br>
+                            </strong>
+                            Aplica una función a cada elemento del RDD.
+                          </p>
+                        </hr>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing code_cell rendered">
+                    <div class="input">
+                      <div class="prompt input_prompt">
+                        In [2]:
+                      </div>
+                      <div class="inner_cell">
+                        <div class="input_area">
+                          <div class=" highlight hl-scala">
+                            <pre><span></span><span class="c1">//convertir a mayúsculas cada palabra</span>
 <span class="c1">//la función se leería: Para cada palabra aplicar función toUpperCase()</span>
-<span class="k">val</span> <span class="n">cadenasMayusculas</span> <span class="k">=</span> <span class="n">cadenasRDD</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">palabra</span> <span class="k">=&gt;</span> <span class="n">palabra</span><span class="o">.</span><span class="n">toUpperCase</span><span class="o">())</span>
+<span class="k">val</span> <span class="n">cadenasMayusculas</span> <span class="k">=</span> <span class="n">cadenasRDD</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">palabra</span> <span class="k">=></span> <span class="n">palabra</span><span class="o">.</span><span class="n">toUpperCase</span><span class="o">())</span>
 <span class="n">cadenasMayusculas</span><span class="o">.</span><span class="n">collect</span><span class="o">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[2]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>cadenasMayusculas: org.apache.spark.rdd.RDD[String] = MapPartitionsRDD[1] at map at &lt;console&gt;:33
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="output_wrapper">
+                      <div class="output">
+                        <div class="output_area">
+                          <div class="prompt output_prompt">
+                            Out[2]:
+                          </div>
+                          <div class="output_text output_subarea output_execute_result">
+                            <pre>cadenasMayusculas: org.apache.spark.rdd.RDD[String] = MapPartitionsRDD[1] at map at <console>:33
 res0: Array[String] = Array(SPARK, HADOOP, HDFS, SPARK, HDFS)
 </pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<p><strong>filter():</strong> Filtra cada palabra igual a la cadena.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">val</span> <span class="n">data</span> <span class="k">=</span> <span class="n">cadenasMayusculas</span><span class="o">.</span><span class="n">filter</span><span class="o">(</span><span class="n">p</span> <span class="k">=&gt;</span> <span class="n">p</span><span class="o">.</span><span class="n">contains</span><span class="o">(</span><span class="s">&quot;ARK&quot;</span><span class="o">))</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing text_cell rendered">
+                    <div class="prompt input_prompt">
+                    </div>
+                    <div class="inner_cell">
+                      <div class="text_cell_render border-box-sizing rendered_html">
+                        <hr>
+                          <p>
+                            <strong>
+                              filter():
+                            </strong>
+                            Filtra cada palabra igual a la cadena.
+                          </p>
+                        </hr>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing code_cell rendered">
+                    <div class="input">
+                      <div class="prompt input_prompt">
+                        In [3]:
+                      </div>
+                      <div class="inner_cell">
+                        <div class="input_area">
+                          <div class=" highlight hl-scala">
+                            <pre><span></span><span class="k">val</span> <span class="n">data</span> <span class="k">=</span> <span class="n">cadenasMayusculas</span><span class="o">.</span><span class="n">filter</span><span class="o">(</span><span class="n">p</span> <span class="k">=></span> <span class="n">p</span><span class="o">.</span><span class="n">contains</span><span class="o">(</span><span class="s">"ARK"</span><span class="o">))</span>
 <span class="n">data</span><span class="o">.</span><span class="n">collect</span><span class="o">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[3]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>data: org.apache.spark.rdd.RDD[String] = MapPartitionsRDD[2] at filter at &lt;console&gt;:33
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="output_wrapper">
+                      <div class="output">
+                        <div class="output_area">
+                          <div class="prompt output_prompt">
+                            Out[3]:
+                          </div>
+                          <div class="output_text output_subarea output_execute_result">
+                            <pre>data: org.apache.spark.rdd.RDD[String] = MapPartitionsRDD[2] at filter at <console>:33
 res1: Array[String] = Array(SPARK, SPARK)
 </pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<p><strong>flatMap():</strong> Aplica una función a cada elemento y devuelve una única lista.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">val</span> <span class="n">mayusculas</span> <span class="k">=</span> <span class="n">cadenasRDD</span><span class="o">.</span><span class="n">flatMap</span><span class="o">(</span><span class="n">p</span> <span class="k">=&gt;</span> <span class="n">p</span><span class="o">.</span><span class="n">toUpperCase</span><span class="o">())</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing text_cell rendered">
+                    <div class="prompt input_prompt">
+                    </div>
+                    <div class="inner_cell">
+                      <div class="text_cell_render border-box-sizing rendered_html">
+                        <hr>
+                          <p>
+                            <strong>
+                              flatMap():
+                            </strong>
+                            Aplica una función a cada elemento y devuelve una única lista.
+                          </p>
+                        </hr>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing code_cell rendered">
+                    <div class="input">
+                      <div class="prompt input_prompt">
+                        In [4]:
+                      </div>
+                      <div class="inner_cell">
+                        <div class="input_area">
+                          <div class=" highlight hl-scala">
+                            <pre><span></span><span class="k">val</span> <span class="n">mayusculas</span> <span class="k">=</span> <span class="n">cadenasRDD</span><span class="o">.</span><span class="n">flatMap</span><span class="o">(</span><span class="n">p</span> <span class="k">=></span> <span class="n">p</span><span class="o">.</span><span class="n">toUpperCase</span><span class="o">())</span>
 <span class="n">mayusculas</span><span class="o">.</span><span class="n">collect</span><span class="o">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[4]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>mayusculas: org.apache.spark.rdd.RDD[Char] = MapPartitionsRDD[3] at flatMap at &lt;console&gt;:31
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="output_wrapper">
+                      <div class="output">
+                        <div class="output_area">
+                          <div class="prompt output_prompt">
+                            Out[4]:
+                          </div>
+                          <div class="output_text output_subarea output_execute_result">
+                            <pre>mayusculas: org.apache.spark.rdd.RDD[Char] = MapPartitionsRDD[3] at flatMap at <console>:31
 res2: Array[Char] = Array(S, P, A, R, K, H, A, D, O, O, P, H, D, F, S, S, P, A, R, K, H, D, F, S)
 </pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">val</span> <span class="n">mayusLength</span> <span class="k">=</span> <span class="n">cadenasRDD</span><span class="o">.</span><span class="n">flatMap</span><span class="o">(</span><span class="n">p</span> <span class="k">=&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="n">toUpperCase</span><span class="o">(),</span> <span class="n">p</span><span class="o">.</span><span class="n">length</span><span class="o">))</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing code_cell rendered">
+                    <div class="input">
+                      <div class="prompt input_prompt">
+                        In [5]:
+                      </div>
+                      <div class="inner_cell">
+                        <div class="input_area">
+                          <div class=" highlight hl-scala">
+                            <pre><span></span><span class="k">val</span> <span class="n">mayusLength</span> <span class="k">=</span> <span class="n">cadenasRDD</span><span class="o">.</span><span class="n">flatMap</span><span class="o">(</span><span class="n">p</span> <span class="k">=></span> <span class="nc">List</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="n">toUpperCase</span><span class="o">(),</span> <span class="n">p</span><span class="o">.</span><span class="n">length</span><span class="o">))</span>
 <span class="n">mayusLength</span><span class="o">.</span><span class="n">collect</span><span class="o">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[5]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>mayusLength: org.apache.spark.rdd.RDD[Any] = MapPartitionsRDD[4] at flatMap at &lt;console&gt;:31
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="output_wrapper">
+                      <div class="output">
+                        <div class="output_area">
+                          <div class="prompt output_prompt">
+                            Out[5]:
+                          </div>
+                          <div class="output_text output_subarea output_execute_result">
+                            <pre>mayusLength: org.apache.spark.rdd.RDD[Any] = MapPartitionsRDD[4] at flatMap at <console>:31
 res3: Array[Any] = Array(SPARK, 5, HADOOP, 6, HDFS, 4, SPARK, 5, HDFS, 4)
 </pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<p><strong>union():</strong> une RDDs.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">val</span> <span class="n">cadenasBoth</span> <span class="k">=</span> <span class="n">cadenasRDD</span><span class="o">.</span><span class="n">union</span><span class="o">(</span><span class="n">cadenasMayusculas</span><span class="o">)</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing text_cell rendered">
+                    <div class="prompt input_prompt">
+                    </div>
+                    <div class="inner_cell">
+                      <div class="text_cell_render border-box-sizing rendered_html">
+                        <hr>
+                          <p>
+                            <strong>
+                              union():
+                            </strong>
+                            une RDDs.
+                          </p>
+                        </hr>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing code_cell rendered">
+                    <div class="input">
+                      <div class="prompt input_prompt">
+                        In [6]:
+                      </div>
+                      <div class="inner_cell">
+                        <div class="input_area">
+                          <div class=" highlight hl-scala">
+                            <pre><span></span><span class="k">val</span> <span class="n">cadenasBoth</span> <span class="k">=</span> <span class="n">cadenasRDD</span><span class="o">.</span><span class="n">union</span><span class="o">(</span><span class="n">cadenasMayusculas</span><span class="o">)</span>
 <span class="n">cadenasBoth</span><span class="o">.</span><span class="n">collect</span><span class="o">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[6]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>cadenasBoth: org.apache.spark.rdd.RDD[String] = UnionRDD[5] at union at &lt;console&gt;:33
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="output_wrapper">
+                      <div class="output">
+                        <div class="output_area">
+                          <div class="prompt output_prompt">
+                            Out[6]:
+                          </div>
+                          <div class="output_text output_subarea output_execute_result">
+                            <pre>cadenasBoth: org.apache.spark.rdd.RDD[String] = UnionRDD[5] at union at <console>:33
 res4: Array[String] = Array(spark, hadoop, hdfs, spark, hdfs, SPARK, HADOOP, HDFS, SPARK, HDFS)
 </pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<p><strong>distinct():</strong> elimina valores repetidos.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="n">cadenasBoth</span><span class="o">.</span><span class="n">distinct</span><span class="o">().</span><span class="n">collect</span><span class="o">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[7]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>res5: Array[String] = Array(hadoop, SPARK, hdfs, spark, HDFS, HADOOP)
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing text_cell rendered">
+                    <div class="prompt input_prompt">
+                    </div>
+                    <div class="inner_cell">
+                      <div class="text_cell_render border-box-sizing rendered_html">
+                        <hr>
+                          <p>
+                            <strong>
+                              distinct():
+                            </strong>
+                            elimina valores repetidos.
+                          </p>
+                        </hr>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing code_cell rendered">
+                    <div class="input">
+                      <div class="prompt input_prompt">
+                        In [7]:
+                      </div>
+                      <div class="inner_cell">
+                        <div class="input_area">
+                          <div class=" highlight hl-scala">
+                            <pre><span></span><span class="n">cadenasBoth</span><span class="o">.</span><span class="n">distinct</span><span class="o">().</span><span class="n">collect</span><span class="o">()</span>
 </pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<p><strong>groupByKey():</strong> Agrupa por cada key única los valor.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">//se crea un RDD de pares clave valor.</span>
-<span class="k">val</span> <span class="n">parCV</span> <span class="k">=</span> <span class="n">cadenasRDD</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">p</span> <span class="k">=&gt;</span> <span class="o">(</span><span class="n">p</span><span class="o">,</span><span class="mi">1</span><span class="o">))</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="output_wrapper">
+                      <div class="output">
+                        <div class="output_area">
+                          <div class="prompt output_prompt">
+                            Out[7]:
+                          </div>
+                          <div class="output_text output_subarea output_execute_result">
+                            <pre>res5: Array[String] = Array(hadoop, SPARK, hdfs, spark, HDFS, HADOOP)
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing text_cell rendered">
+                    <div class="prompt input_prompt">
+                    </div>
+                    <div class="inner_cell">
+                      <div class="text_cell_render border-box-sizing rendered_html">
+                        <hr>
+                          <p>
+                            <strong>
+                              groupByKey():
+                            </strong>
+                            Agrupa por cada key única los valor.
+                          </p>
+                        </hr>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing code_cell rendered">
+                    <div class="input">
+                      <div class="prompt input_prompt">
+                        In [8]:
+                      </div>
+                      <div class="inner_cell">
+                        <div class="input_area">
+                          <div class=" highlight hl-scala">
+                            <pre><span></span><span class="c1">//se crea un RDD de pares clave valor.</span>
+<span class="k">val</span> <span class="n">parCV</span> <span class="k">=</span> <span class="n">cadenasRDD</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">p</span> <span class="k">=></span> <span class="o">(</span><span class="n">p</span><span class="o">,</span><span class="mi">1</span><span class="o">))</span>
 <span class="n">parCV</span><span class="o">.</span><span class="n">collect</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[8]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>parCV: org.apache.spark.rdd.RDD[(String, Int)] = MapPartitionsRDD[9] at map at &lt;console&gt;:32
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="output_wrapper">
+                      <div class="output">
+                        <div class="output_area">
+                          <div class="prompt output_prompt">
+                            Out[8]:
+                          </div>
+                          <div class="output_text output_subarea output_execute_result">
+                            <pre>parCV: org.apache.spark.rdd.RDD[(String, Int)] = MapPartitionsRDD[9] at map at <console>:32
 res6: Array[(String, Int)] = Array((spark,1), (hadoop,1), (hdfs,1), (spark,1), (hdfs,1))
 </pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">//se aplica groupByKey donde se realiza un agregado de claves por cada valor único </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing code_cell rendered">
+                    <div class="input">
+                      <div class="prompt input_prompt">
+                        In [9]:
+                      </div>
+                      <div class="inner_cell">
+                        <div class="input_area">
+                          <div class=" highlight hl-scala">
+                            <pre><span></span><span class="c1">//se aplica groupByKey donde se realiza un agregado de claves por cada valor único </span>
 <span class="k">val</span> <span class="n">group</span> <span class="k">=</span> <span class="n">parCV</span><span class="o">.</span><span class="n">groupByKey</span><span class="o">()</span>
 <span class="n">group</span><span class="o">.</span><span class="n">collect</span><span class="o">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[9]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>group: org.apache.spark.rdd.RDD[(String, Iterable[Int])] = ShuffledRDD[10] at groupByKey at &lt;console&gt;:34
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="output_wrapper">
+                      <div class="output">
+                        <div class="output_area">
+                          <div class="prompt output_prompt">
+                            Out[9]:
+                          </div>
+                          <div class="output_text output_subarea output_execute_result">
+                            <pre>group: org.apache.spark.rdd.RDD[(String, Iterable[Int])] = ShuffledRDD[10] at groupByKey at <console>:34
 res7: Array[(String, Iterable[Int])] = Array((hadoop,CompactBuffer(1)), (hdfs,CompactBuffer(1, 1)), (spark,CompactBuffer(1, 1)))
 </pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<p><strong>reduceByKey():</strong> Realiza una agrupación por clave única y reduce los valores de cada clave.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">//(_+_) indica sumar todos los valores</span>
-<span class="c1">//(_+_) se puede expresar también como ((a,b) =&gt; a+b)</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing text_cell rendered">
+                    <div class="prompt input_prompt">
+                    </div>
+                    <div class="inner_cell">
+                      <div class="text_cell_render border-box-sizing rendered_html">
+                        <hr>
+                          <p>
+                            <strong>
+                              reduceByKey():
+                            </strong>
+                            Realiza una agrupación por clave única y reduce los valores de cada clave.
+                          </p>
+                        </hr>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing code_cell rendered">
+                    <div class="input">
+                      <div class="prompt input_prompt">
+                        In [10]:
+                      </div>
+                      <div class="inner_cell">
+                        <div class="input_area">
+                          <div class=" highlight hl-scala">
+                            <pre><span></span><span class="c1">//(_+_) indica sumar todos los valores</span>
+<span class="c1">//(_+_) se puede expresar también como ((a,b) => a+b)</span>
 <span class="k">val</span> <span class="n">suma</span> <span class="k">=</span> <span class="n">parCV</span><span class="o">.</span><span class="n">reduceByKey</span><span class="o">(</span><span class="k">_</span> <span class="o">+</span> <span class="k">_</span><span class="o">)</span>
 <span class="n">suma</span><span class="o">.</span><span class="n">collect</span><span class="o">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[10]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>suma: org.apache.spark.rdd.RDD[(String, Int)] = ShuffledRDD[11] at reduceByKey at &lt;console&gt;:35
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="output_wrapper">
+                      <div class="output">
+                        <div class="output_area">
+                          <div class="prompt output_prompt">
+                            Out[10]:
+                          </div>
+                          <div class="output_text output_subarea output_execute_result">
+                            <pre>suma: org.apache.spark.rdd.RDD[(String, Int)] = ShuffledRDD[11] at reduceByKey at <console>:35
 res8: Array[(String, Int)] = Array((hadoop,1), (hdfs,2), (spark,2))
 </pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<p><strong>sortByKey():</strong> Ordena por clave.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing text_cell rendered">
+                    <div class="prompt input_prompt">
+                    </div>
+                    <div class="inner_cell">
+                      <div class="text_cell_render border-box-sizing rendered_html">
+                        <hr>
+                          <p>
+                            <strong>
+                              sortByKey():
+                            </strong>
+                            Ordena por clave.
 true: orden ascendente
-false: orden descendente</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="n">parCV</span><span class="o">.</span><span class="n">sortByKey</span><span class="o">(</span><span class="kc">false</span><span class="o">).</span><span class="n">collect</span><span class="o">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[11]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>res9: Array[(String, Int)] = Array((spark,1), (spark,1), (hdfs,1), (hdfs,1), (hadoop,1))
+false: orden descendente
+                          </p>
+                        </hr>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing code_cell rendered">
+                    <div class="input">
+                      <div class="prompt input_prompt">
+                        In [11]:
+                      </div>
+                      <div class="inner_cell">
+                        <div class="input_area">
+                          <div class=" highlight hl-scala">
+                            <pre><span></span><span class="n">parCV</span><span class="o">.</span><span class="n">sortByKey</span><span class="o">(</span><span class="kc">false</span><span class="o">).</span><span class="n">collect</span><span class="o">()</span>
 </pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<p><strong>crear una función para pasarla a un map:</strong></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">//se crea la función con parámetro de entrada string y devuelve un string y un entero.</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="output_wrapper">
+                      <div class="output">
+                        <div class="output_area">
+                          <div class="prompt output_prompt">
+                            Out[11]:
+                          </div>
+                          <div class="output_text output_subarea output_execute_result">
+                            <pre>res9: Array[(String, Int)] = Array((spark,1), (spark,1), (hdfs,1), (hdfs,1), (hadoop,1))
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing text_cell rendered">
+                    <div class="prompt input_prompt">
+                    </div>
+                    <div class="inner_cell">
+                      <div class="text_cell_render border-box-sizing rendered_html">
+                        <hr>
+                          <p>
+                            <strong>
+                              crear una función para pasarla a un map:
+                            </strong>
+                          </p>
+                        </hr>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing code_cell rendered">
+                    <div class="input">
+                      <div class="prompt input_prompt">
+                        In [12]:
+                      </div>
+                      <div class="inner_cell">
+                        <div class="input_area">
+                          <div class=" highlight hl-scala">
+                            <pre><span></span><span class="c1">//se crea la función con parámetro de entrada string y devuelve un string y un entero.</span>
 <span class="k">def</span> <span class="n">tamanyo</span><span class="o">(</span><span class="n">s</span> <span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">:</span> <span class="o">(</span><span class="kt">String</span><span class="o">,</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=</span> <span class="o">{</span>
     <span class="k">return</span><span class="o">(</span><span class="n">s</span><span class="o">,</span> <span class="n">s</span><span class="o">.</span><span class="n">length</span><span class="o">());</span>
 <span class="o">}</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[12]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>tamanyo: (s: String)(String, Int)
 </pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="n">cadenasRDD</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">tamanyo</span><span class="o">(</span><span class="k">_</span><span class="o">)).</span><span class="n">collect</span><span class="o">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[13]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>res10: Array[(String, Int)] = Array((spark,5), (hadoop,6), (hdfs,4), (spark,5), (hdfs,4))
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="output_wrapper">
+                      <div class="output">
+                        <div class="output_area">
+                          <div class="prompt output_prompt">
+                            Out[12]:
+                          </div>
+                          <div class="output_text output_subarea output_execute_result">
+                            <pre>tamanyo: (s: String)(String, Int)
 </pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    </div>
-  </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing code_cell rendered">
+                    <div class="input">
+                      <div class="prompt input_prompt">
+                        In [13]:
+                      </div>
+                      <div class="inner_cell">
+                        <div class="input_area">
+                          <div class=" highlight hl-scala">
+                            <pre><span></span><span class="n">cadenasRDD</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">tamanyo</span><span class="o">(</span><span class="k">_</span><span class="o">)).</span><span class="n">collect</span><span class="o">()</span>
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="output_wrapper">
+                      <div class="output">
+                        <div class="output_area">
+                          <div class="prompt output_prompt">
+                            Out[13]:
+                          </div>
+                          <div class="output_text output_subarea output_execute_result">
+                            <pre>res10: Array[(String, Int)] = Array((spark,5), (hadoop,6), (hdfs,4), (spark,5), (hdfs,4))
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
-           <section id="acciones">
+          <section id="acciones">
             <div class="page-header">
               <h1>
                 5. Acciones
               </h1>
             </div>
             <div class="codigo-scala">
-              <div tabindex="-1" id="notebook" class="border-box-sizing">
-    <div id="notebook-container">
-
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">//importamos SparkConf, SparkContext, RDD</span>
+              <div class="border-box-sizing" id="notebook" tabindex="-1">
+                <div id="notebook-container">
+                  <div class="cell border-box-sizing code_cell rendered">
+                    <div class="input">
+                      <div class="prompt input_prompt">
+                        In [1]:
+                      </div>
+                      <div class="inner_cell">
+                        <div class="input_area">
+                          <div class=" highlight hl-scala">
+                            <pre><span></span><span class="c1">//importamos SparkConf, SparkContext, RDD</span>
 <span class="k">import</span> <span class="nn">org.apache.spark.SparkConf</span> 
 <span class="k">import</span> <span class="nn">org.apache.spark.SparkContext</span>
 <span class="k">import</span> <span class="nn">org.apache.spark.rdd.RDD</span>
 
 <span class="c1">//creación de un array</span>
-<span class="k">val</span> <span class="n">cadenas</span> <span class="k">=</span> <span class="nc">Array</span><span class="o">(</span><span class="s">&quot;spark&quot;</span><span class="o">,</span> <span class="s">&quot;hadoop&quot;</span><span class="o">,</span> <span class="s">&quot;hdfs&quot;</span><span class="o">,</span> <span class="s">&quot;spark&quot;</span><span class="o">,</span> <span class="s">&quot;hdfs&quot;</span><span class="o">)</span>
+<span class="k">val</span> <span class="n">cadenas</span> <span class="k">=</span> <span class="nc">Array</span><span class="o">(</span><span class="s">"spark"</span><span class="o">,</span> <span class="s">"hadoop"</span><span class="o">,</span> <span class="s">"hdfs"</span><span class="o">,</span> <span class="s">"spark"</span><span class="o">,</span> <span class="s">"hdfs"</span><span class="o">)</span>
 
 <span class="c1">//paralelización del RDD cadenas</span>
 <span class="k">val</span> <span class="n">cadenasRDD</span> <span class="k">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="o">(</span><span class="n">cadenas</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
 
 <span class="c1">//declaración y paralelización de RDD</span>
 <span class="k">val</span> <span class="n">numerosRDD</span> <span class="k">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="o">(</span><span class="nc">Array</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">,</span><span class="mi">4</span><span class="o">,</span><span class="mi">5</span><span class="o">,</span><span class="mi">6</span><span class="o">,</span><span class="mi">7</span><span class="o">,</span><span class="mi">8</span><span class="o">,</span><span class="mi">9</span><span class="o">),</span> <span class="mi">3</span><span class="o">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-
-
-<div class="output_text output_subarea ">
-<pre>Intitializing Scala interpreter ...</pre>
-</div>
-
-</div>
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-
-
-<div class="output_text output_subarea ">
-<pre>Spark Web UI available at http://10.0.2.15:4041
-SparkContext available as &#39;sc&#39; (version = 2.3.0, master = local[*], app id = local-1531858672993)
-SparkSession available as &#39;spark&#39;
 </pre>
-</div>
-
-</div>
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[1]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>import org.apache.spark.SparkConf
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="output_wrapper">
+                      <div class="output">
+                        <div class="output_area">
+                          <div class="prompt">
+                          </div>
+                          <div class="output_text output_subarea ">
+                            <pre>Intitializing Scala interpreter ...</pre>
+                          </div>
+                        </div>
+                        <div class="output_area">
+                          <div class="prompt">
+                          </div>
+                          <div class="output_text output_subarea ">
+                            <pre>Spark Web UI available at http://10.0.2.15:4041
+SparkContext available as 'sc' (version = 2.3.0, master = local[*], app id = local-1531858672993)
+SparkSession available as 'spark'
+</pre>
+                          </div>
+                        </div>
+                        <div class="output_area">
+                          <div class="prompt output_prompt">
+                            Out[1]:
+                          </div>
+                          <div class="output_text output_subarea output_execute_result">
+                            <pre>import org.apache.spark.SparkConf
 import org.apache.spark.SparkContext
 import org.apache.spark.rdd.RDD
 cadenas: Array[String] = Array(spark, hadoop, hdfs, spark, hdfs)
-cadenasRDD: org.apache.spark.rdd.RDD[String] = ParallelCollectionRDD[0] at parallelize at &lt;console&gt;:34
-numerosRDD: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[1] at parallelize at &lt;console&gt;:37
+cadenasRDD: org.apache.spark.rdd.RDD[String] = ParallelCollectionRDD[0] at parallelize at <console>:34
+numerosRDD: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[1] at parallelize at <console>:37
 </pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<p><strong>colect()</strong> muestra el contenido de un RDD contenido</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="n">cadenasRDD</span><span class="o">.</span><span class="n">collect</span><span class="o">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[2]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>res0: Array[String] = Array(spark, hadoop, hdfs, spark, hdfs)
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing text_cell rendered">
+                    <div class="prompt input_prompt">
+                    </div>
+                    <div class="inner_cell">
+                      <div class="text_cell_render border-box-sizing rendered_html">
+                        <hr>
+                          <p>
+                            <strong>
+                              colect()
+                            </strong>
+                            muestra el contenido de un RDD contenido
+                          </p>
+                        </hr>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing code_cell rendered">
+                    <div class="input">
+                      <div class="prompt input_prompt">
+                        In [2]:
+                      </div>
+                      <div class="inner_cell">
+                        <div class="input_area">
+                          <div class=" highlight hl-scala">
+                            <pre><span></span><span class="n">cadenasRDD</span><span class="o">.</span><span class="n">collect</span><span class="o">()</span>
 </pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<p><strong>first()</strong> devuelve el primer elemento de un RDD</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="n">cadenasRDD</span><span class="o">.</span><span class="n">first</span><span class="o">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[3]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>res1: String = spark
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="output_wrapper">
+                      <div class="output">
+                        <div class="output_area">
+                          <div class="prompt output_prompt">
+                            Out[2]:
+                          </div>
+                          <div class="output_text output_subarea output_execute_result">
+                            <pre>res0: Array[String] = Array(spark, hadoop, hdfs, spark, hdfs)
 </pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<p><strong>count()</strong> devuelve el número de elemento de un RDD</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="n">cadenasRDD</span><span class="o">.</span><span class="n">count</span><span class="o">()</span> <span class="o">+</span> <span class="n">numerosRDD</span><span class="o">.</span><span class="n">count</span><span class="o">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[4]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>res2: Long = 14
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing text_cell rendered">
+                    <div class="prompt input_prompt">
+                    </div>
+                    <div class="inner_cell">
+                      <div class="text_cell_render border-box-sizing rendered_html">
+                        <hr>
+                          <p>
+                            <strong>
+                              first()
+                            </strong>
+                            devuelve el primer elemento de un RDD
+                          </p>
+                        </hr>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing code_cell rendered">
+                    <div class="input">
+                      <div class="prompt input_prompt">
+                        In [3]:
+                      </div>
+                      <div class="inner_cell">
+                        <div class="input_area">
+                          <div class=" highlight hl-scala">
+                            <pre><span></span><span class="n">cadenasRDD</span><span class="o">.</span><span class="n">first</span><span class="o">()</span>
 </pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<p><strong>reduce()</strong> Aplica una acción a todos los elementos del RDD y devuelve un único elemento</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">//aplicar reduce con la suma de los elementos contenidos en numerosRDD</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="output_wrapper">
+                      <div class="output">
+                        <div class="output_area">
+                          <div class="prompt output_prompt">
+                            Out[3]:
+                          </div>
+                          <div class="output_text output_subarea output_execute_result">
+                            <pre>res1: String = spark
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing text_cell rendered">
+                    <div class="prompt input_prompt">
+                    </div>
+                    <div class="inner_cell">
+                      <div class="text_cell_render border-box-sizing rendered_html">
+                        <hr>
+                          <p>
+                            <strong>
+                              count()
+                            </strong>
+                            devuelve el número de elemento de un RDD
+                          </p>
+                        </hr>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing code_cell rendered">
+                    <div class="input">
+                      <div class="prompt input_prompt">
+                        In [4]:
+                      </div>
+                      <div class="inner_cell">
+                        <div class="input_area">
+                          <div class=" highlight hl-scala">
+                            <pre><span></span><span class="n">cadenasRDD</span><span class="o">.</span><span class="n">count</span><span class="o">()</span> <span class="o">+</span> <span class="n">numerosRDD</span><span class="o">.</span><span class="n">count</span><span class="o">()</span>
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="output_wrapper">
+                      <div class="output">
+                        <div class="output_area">
+                          <div class="prompt output_prompt">
+                            Out[4]:
+                          </div>
+                          <div class="output_text output_subarea output_execute_result">
+                            <pre>res2: Long = 14
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing text_cell rendered">
+                    <div class="prompt input_prompt">
+                    </div>
+                    <div class="inner_cell">
+                      <div class="text_cell_render border-box-sizing rendered_html">
+                        <hr>
+                          <p>
+                            <strong>
+                              reduce()
+                            </strong>
+                            Aplica una acción a todos los elementos del RDD y devuelve un único elemento
+                          </p>
+                        </hr>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing code_cell rendered">
+                    <div class="input">
+                      <div class="prompt input_prompt">
+                        In [5]:
+                      </div>
+                      <div class="inner_cell">
+                        <div class="input_area">
+                          <div class=" highlight hl-scala">
+                            <pre><span></span><span class="c1">//aplicar reduce con la suma de los elementos contenidos en numerosRDD</span>
 <span class="n">numerosRDD</span><span class="o">.</span><span class="n">reduce</span><span class="o">(</span><span class="k">_</span><span class="o">+</span><span class="k">_</span><span class="o">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[5]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>res3: Int = 45
 </pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<p><strong>take()</strong> devuelve n primeros elementos del RDD</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="n">numerosRDD</span><span class="o">.</span><span class="n">take</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[6]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>res4: Array[Int] = Array(1, 2, 3)
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="output_wrapper">
+                      <div class="output">
+                        <div class="output_area">
+                          <div class="prompt output_prompt">
+                            Out[5]:
+                          </div>
+                          <div class="output_text output_subarea output_execute_result">
+                            <pre>res3: Int = 45
 </pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<p><strong>max()</strong> devuelve el número máximo de entre los elementos del RDD
-<strong>min()</strong> devuelve el número mínimo de entre los elementos del RDD</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="n">numerosRDD</span><span class="o">.</span><span class="n">max</span><span class="o">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[7]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>res5: Int = 9
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing text_cell rendered">
+                    <div class="prompt input_prompt">
+                    </div>
+                    <div class="inner_cell">
+                      <div class="text_cell_render border-box-sizing rendered_html">
+                        <hr>
+                          <p>
+                            <strong>
+                              take()
+                            </strong>
+                            devuelve n primeros elementos del RDD
+                          </p>
+                        </hr>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing code_cell rendered">
+                    <div class="input">
+                      <div class="prompt input_prompt">
+                        In [6]:
+                      </div>
+                      <div class="inner_cell">
+                        <div class="input_area">
+                          <div class=" highlight hl-scala">
+                            <pre><span></span><span class="n">numerosRDD</span><span class="o">.</span><span class="n">take</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span>
 </pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<p><strong>countByKey()</strong> devuelve el conteo de valores para cada única clave</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">//se crea un RDD de pares clave valor.</span>
-<span class="k">val</span> <span class="n">parCV</span> <span class="k">=</span> <span class="n">cadenasRDD</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">p</span> <span class="k">=&gt;</span> <span class="o">(</span><span class="n">p</span><span class="o">,</span><span class="mi">1</span><span class="o">))</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="output_wrapper">
+                      <div class="output">
+                        <div class="output_area">
+                          <div class="prompt output_prompt">
+                            Out[6]:
+                          </div>
+                          <div class="output_text output_subarea output_execute_result">
+                            <pre>res4: Array[Int] = Array(1, 2, 3)
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing text_cell rendered">
+                    <div class="prompt input_prompt">
+                    </div>
+                    <div class="inner_cell">
+                      <div class="text_cell_render border-box-sizing rendered_html">
+                        <hr>
+                          <p>
+                            <strong>
+                              max()
+                            </strong>
+                            devuelve el número máximo de entre los elementos del RDD
+                            <strong>
+                              min()
+                            </strong>
+                            devuelve el número mínimo de entre los elementos del RDD
+                          </p>
+                        </hr>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing code_cell rendered">
+                    <div class="input">
+                      <div class="prompt input_prompt">
+                        In [7]:
+                      </div>
+                      <div class="inner_cell">
+                        <div class="input_area">
+                          <div class=" highlight hl-scala">
+                            <pre><span></span><span class="n">numerosRDD</span><span class="o">.</span><span class="n">max</span><span class="o">()</span>
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="output_wrapper">
+                      <div class="output">
+                        <div class="output_area">
+                          <div class="prompt output_prompt">
+                            Out[7]:
+                          </div>
+                          <div class="output_text output_subarea output_execute_result">
+                            <pre>res5: Int = 9
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing text_cell rendered">
+                    <div class="prompt input_prompt">
+                    </div>
+                    <div class="inner_cell">
+                      <div class="text_cell_render border-box-sizing rendered_html">
+                        <hr>
+                          <p>
+                            <strong>
+                              countByKey()
+                            </strong>
+                            devuelve el conteo de valores para cada única clave
+                          </p>
+                        </hr>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing code_cell rendered">
+                    <div class="input">
+                      <div class="prompt input_prompt">
+                        In [8]:
+                      </div>
+                      <div class="inner_cell">
+                        <div class="input_area">
+                          <div class=" highlight hl-scala">
+                            <pre><span></span><span class="c1">//se crea un RDD de pares clave valor.</span>
+<span class="k">val</span> <span class="n">parCV</span> <span class="k">=</span> <span class="n">cadenasRDD</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">p</span> <span class="k">=></span> <span class="o">(</span><span class="n">p</span><span class="o">,</span><span class="mi">1</span><span class="o">))</span>
 <span class="n">parCV</span><span class="o">.</span><span class="n">collect</span><span class="o">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[8]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>parCV: org.apache.spark.rdd.RDD[(String, Int)] = MapPartitionsRDD[2] at map at &lt;console&gt;:32
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="output_wrapper">
+                      <div class="output">
+                        <div class="output_area">
+                          <div class="prompt output_prompt">
+                            Out[8]:
+                          </div>
+                          <div class="output_text output_subarea output_execute_result">
+                            <pre>parCV: org.apache.spark.rdd.RDD[(String, Int)] = MapPartitionsRDD[2] at map at <console>:32
 res6: Array[(String, Int)] = Array((spark,1), (hadoop,1), (hdfs,1), (spark,1), (hdfs,1))
 </pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="n">parCV</span><span class="o">.</span><span class="n">countByKey</span><span class="o">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[9]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>res7: scala.collection.Map[String,Long] = Map(hadoop -&gt; 1, hdfs -&gt; 2, spark -&gt; 2)
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing code_cell rendered">
+                    <div class="input">
+                      <div class="prompt input_prompt">
+                        In [9]:
+                      </div>
+                      <div class="inner_cell">
+                        <div class="input_area">
+                          <div class=" highlight hl-scala">
+                            <pre><span></span><span class="n">parCV</span><span class="o">.</span><span class="n">countByKey</span><span class="o">()</span>
 </pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<p><strong>foreach()</strong> aplicar una acción por cada elemento del RDD</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="n">cadenasRDD</span><span class="o">.</span><span class="n">foreach</span><span class="o">(</span><span class="n">p</span> <span class="k">=&gt;</span> <span class="n">println</span><span class="o">(</span><span class="s">&quot;La palabra es &quot;</span> <span class="o">+</span> <span class="n">p</span><span class="o">))</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>La palabra es hadoop
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="output_wrapper">
+                      <div class="output">
+                        <div class="output_area">
+                          <div class="prompt output_prompt">
+                            Out[9]:
+                          </div>
+                          <div class="output_text output_subarea output_execute_result">
+                            <pre>res7: scala.collection.Map[String,Long] = Map(hadoop -> 1, hdfs -> 2, spark -> 2)
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing text_cell rendered">
+                    <div class="prompt input_prompt">
+                    </div>
+                    <div class="inner_cell">
+                      <div class="text_cell_render border-box-sizing rendered_html">
+                        <hr>
+                          <p>
+                            <strong>
+                              foreach()
+                            </strong>
+                            aplicar una acción por cada elemento del RDD
+                          </p>
+                        </hr>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing code_cell rendered">
+                    <div class="input">
+                      <div class="prompt input_prompt">
+                        In [10]:
+                      </div>
+                      <div class="inner_cell">
+                        <div class="input_area">
+                          <div class=" highlight hl-scala">
+                            <pre><span></span><span class="n">cadenasRDD</span><span class="o">.</span><span class="n">foreach</span><span class="o">(</span><span class="n">p</span> <span class="k">=></span> <span class="n">println</span><span class="o">(</span><span class="s">"La palabra es "</span> <span class="o">+</span> <span class="n">p</span><span class="o">))</span>
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="output_wrapper">
+                      <div class="output">
+                        <div class="output_area">
+                          <div class="prompt">
+                          </div>
+                          <div class="output_subarea output_stream output_stdout output_text">
+                            <pre>La palabra es hadoop
 La palabra es hdfs
 La palabra es spark
 La palabra es spark
 La palabra es hdfs
 </pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    </div>
-  </div>  
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            </section>
-             <section id="persistencia-head">
+          </section>
+          <section id="persistencia-head">
             <div class="page-header">
               <h1>
                 6. Persistencia y acumuladores
               </h1>
-            </div> 
-            <p>Spark tiene evaluación perezosa.</p>
-            <p>Puede ser necesario utilizar un RDD varias veces y para evitar el coste de tener que recalcular continuamente el RDD se utiliza la <strong>persistencia.</strong></p>
-            <p>Cuando se persiste un dato cada nodo es el responsable de almacenar internamente su parte.</p>
-            <p>Si un nodo con datos persistentes falla, Spark recalcula las particiones perdidas cuando sea necesario.</p>
-            <p>Existen varios niveles de persistencia pudiendo especificar que Spark <strong>serialice o no los datos en disco, memoria o una combinación de ambas.</strong></p>
-            <ul><strong>Tipos de persistencia</strong>
-              <li><strong>MEMORY_ONLY</strong> : Sólo memoria</li>
-              <li><strong>MEMORY_AND_DISK</strong> : Memoria y disco</li>
-              <li><strong>MEMORY_AND_DISK_SER</strong> : Memoria y disco serializado</li>
-              <li><strong>DISK_ONLY</strong> : Sólo disco</li>
-              <li><strong>MEMORY_ONLY_SER</strong> : Sólo memoria serializada</li>
-              <li><strong>MEMORY_ONLY_2</strong> : Sólo memoria (versión mejorada)</li>
+            </div>
+            <p>
+              Spark tiene evaluación perezosa.
+            </p>
+            <p>
+              Puede ser necesario utilizar un RDD varias veces y para evitar el coste de tener que recalcular continuamente el RDD se utiliza la
+              <strong>
+                persistencia.
+              </strong>
+            </p>
+            <p>
+              Cuando se persiste un dato cada nodo es el responsable de almacenar internamente su parte.
+            </p>
+            <p>
+              Si un nodo con datos persistentes falla, Spark recalcula las particiones perdidas cuando sea necesario.
+            </p>
+            <p>
+              Existen varios niveles de persistencia pudiendo especificar que Spark
+              <strong>
+                serialice o no los datos en disco, memoria o una combinación de ambas.
+              </strong>
+            </p>
+            <ul>
+              <strong>
+                Tipos de persistencia
+              </strong>
+              <li>
+                <strong>
+                  MEMORY_ONLY
+                </strong>
+                : Sólo memoria
+              </li>
+              <li>
+                <strong>
+                  MEMORY_AND_DISK
+                </strong>
+                : Memoria y disco
+              </li>
+              <li>
+                <strong>
+                  MEMORY_AND_DISK_SER
+                </strong>
+                : Memoria y disco serializado
+              </li>
+              <li>
+                <strong>
+                  DISK_ONLY
+                </strong>
+                : Sólo disco
+              </li>
+              <li>
+                <strong>
+                  MEMORY_ONLY_SER
+                </strong>
+                : Sólo memoria serializada
+              </li>
+              <li>
+                <strong>
+                  MEMORY_ONLY_2
+                </strong>
+                : Sólo memoria (versión mejorada)
+              </li>
             </ul>
-            <p>Si la persistencia de datos excede la memoria disponible Spark despreciará automáticamente las particiones más antíguas.</p>
-            </section>
+            <p>
+              Si la persistencia de datos excede la memoria disponible Spark despreciará automáticamente las particiones más antíguas.
+            </p>
+            <div class="scala-codigo">
+              <div class="border-box-sizing" id="notebook" tabindex="-1">
+                <div  id="notebook-container">
+                  <div class="cell border-box-sizing code_cell rendered">
+                    <div class="input">
+                      <div class="prompt input_prompt">
+                        In [1]:
+                      </div>
+                      <div class="inner_cell">
+                        <div class="input_area">
+                          <div class=" highlight hl-scala">
+                            <pre><span></span><span class="c1">//importamos SparkConf, SparkContext, RDD, nivel de persistencia</span>
+<span class="k">import</span> <span class="nn">org.apache.spark.SparkConf</span> 
+<span class="k">import</span> <span class="nn">org.apache.spark.SparkContext</span>
+<span class="k">import</span> <span class="nn">org.apache.spark.rdd.RDD</span>
+<span class="k">import</span> <span class="nn">org.apache.spark.storage.StorageLevel</span>
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="output_wrapper">
+                      <div class="output">
+                        <div class="output_area">
+                          <div class="prompt">
+                          </div>
+                          <div class="output_text output_subarea ">
+                            <pre>Intitializing Scala interpreter ...</pre>
+                          </div>
+                        </div>
+                        <div class="output_area">
+                          <div class="prompt">
+                          </div>
+                          <div class="output_text output_subarea ">
+                            <pre>Spark Web UI available at http://10.0.2.15:4040
+SparkContext available as 'sc' (version = 2.3.0, master = local[*], app id = local-1532079923831)
+SparkSession available as 'spark'
+</pre>
+                          </div>
+                        </div>
+                        <div class="output_area">
+                          <div class="prompt output_prompt">
+                            Out[1]:
+                          </div>
+                          <div class="output_text output_subarea output_execute_result">
+                            <pre>import org.apache.spark.SparkConf
+import org.apache.spark.SparkContext
+import org.apache.spark.rdd.RDD
+import org.apache.spark.storage.StorageLevel
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing code_cell rendered">
+                    <div class="input">
+                      <div class="prompt input_prompt">
+                        In [2]:
+                      </div>
+                      <div class="inner_cell">
+                        <div class="input_area">
+                          <div class=" highlight hl-scala">
+                            <pre><span></span><span class="k">val</span> <span class="n">fileMemory</span> <span class="k">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">textFile</span><span class="o">(</span><span class="s">"./documentos/persistenciaFile"</span><span class="o">)</span>
+
+<span class="c1">//persistencia de los datos en memoria</span>
+<span class="n">fileMemory</span><span class="o">.</span><span class="n">persist</span><span class="o">(</span><span class="nc">StorageLevel</span><span class="o">.</span><span class="nc">MEMORY_ONLY</span><span class="o">)</span>
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="output_wrapper">
+                      <div class="output">
+                        <div class="output_area">
+                          <div class="prompt output_prompt">
+                            Out[2]:
+                          </div>
+                          <div class="output_text output_subarea output_execute_result">
+                            <pre>fileMemory: org.apache.spark.rdd.RDD[String] = ./documentos/persistenciaFile MapPartitionsRDD[1] at textFile at <console>:29
+res0: fileMemory.type = ./documentos/persistenciaFile MapPartitionsRDD[1] at textFile at <console>:29
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing code_cell rendered">
+                    <div class="input">
+                      <div class="prompt input_prompt">
+                        In [3]:
+                      </div>
+                      <div class="inner_cell">
+                        <div class="input_area">
+                          <div class=" highlight hl-scala">
+                            <pre><span></span><span class="c1">//se pone a prueba el tiempo de cálculo con los datos persistidos en memoria.</span>
+
+<span class="c1">//variable tiempo de inicio.</span>
+<span class="k">val</span> <span class="n">timestampInicio</span><span class="k">:</span> <span class="kt">Long</span> <span class="o">=</span> <span class="nc">System</span><span class="o">.</span><span class="n">currentTimeMillis</span>
+
+<span class="c1">//filtrado de palabras con tamaño mayor que 6.</span>
+<span class="k">val</span> <span class="n">mayor6</span> <span class="k">=</span> <span class="n">fileMemory</span><span class="o">.</span><span class="n">flatMap</span><span class="o">(</span><span class="n">x</span> <span class="k">=></span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="o">(</span><span class="s">" "</span><span class="o">))</span>
+<span class="o">.</span><span class="n">filter</span><span class="o">(</span><span class="n">p</span> <span class="k">=></span> <span class="n">p</span><span class="o">.</span><span class="n">length</span> <span class="o">></span> <span class="mi">6</span><span class="o">)</span>
+
+<span class="c1">//se realiza una acción para obligar a realizar el cálculo.</span>
+<span class="n">mayor6</span><span class="o">.</span><span class="n">count</span><span class="o">()</span>
+
+<span class="c1">//variable tiempo final</span>
+<span class="k">val</span> <span class="n">timestampFin</span><span class="k">:</span> <span class="kt">Long</span> <span class="o">=</span> <span class="nc">System</span><span class="o">.</span><span class="n">currentTimeMillis</span>
+
+<span class="n">println</span><span class="o">(</span><span class="s">" Tiempo "</span> <span class="o">+</span> <span class="o">(</span><span class="n">timestampFin</span> <span class="o">-</span> <span class="n">timestampInicio</span><span class="o">))</span>
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="output_wrapper">
+                      <div class="output">
+                        <div class="output_area">
+                          <div class="prompt">
+                          </div>
+                          <div class="output_subarea output_stream output_stdout output_text">
+                            <pre> Tiempo 1166
+</pre>
+                          </div>
+                        </div>
+                        <div class="output_area">
+                          <div class="prompt output_prompt">
+                            Out[3]:
+                          </div>
+                          <div class="output_text output_subarea output_execute_result">
+                            <pre>timestampInicio: Long = 1532079941254
+mayor6: org.apache.spark.rdd.RDD[String] = MapPartitionsRDD[3] at filter at <console>:38
+timestampFin: Long = 1532079942420
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing code_cell rendered">
+                    <div class="input">
+                      <div class="prompt input_prompt">
+                        In [4]:
+                      </div>
+                      <div class="inner_cell">
+                        <div class="input_area">
+                          <div class=" highlight hl-scala">
+                            <pre><span></span><span class="c1">//se elimina la persistencia actual</span>
+<span class="n">fileMemory</span><span class="o">.</span><span class="n">unpersist</span><span class="o">()</span>
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="output_wrapper">
+                      <div class="output">
+                        <div class="output_area">
+                          <div class="prompt output_prompt">
+                            Out[4]:
+                          </div>
+                          <div class="output_text output_subarea output_execute_result">
+                            <pre>res2: fileMemory.type = ./documentos/persistenciaFile MapPartitionsRDD[1] at textFile at <console>:29
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing text_cell rendered">
+                    <div class="prompt input_prompt">
+                    </div>
+                    <div class="inner_cell">
+                      <div class="text_cell_render border-box-sizing rendered_html">
+                        <p>
+                          <hr/>
+                        </p>
+                        <h4 id="Acumuladores:">
+                          Acumuladores:
+                          <a class="anchor-link" href="#Acumuladores:">
+                          </a>
+                        </h4>
+                        <ul>
+                          <li>
+                            Son variables compartidas de tipo int o double.
+                          </li>
+                          <li>
+                            Se crean a partir de un sparkContext "sc".
+                          </li>
+                          <li>
+                            Sólo el driver puede acceder al valor, los accesos desde workers devuelven error.
+                          </li>
+                          <li>
+                            Los workers sólo pueden incrementar el valor.
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell border-box-sizing code_cell rendered">
+                    <div class="input">
+                      <div class="prompt input_prompt">
+                        In [5]:
+                      </div>
+                      <div class="inner_cell">
+                        <div class="input_area">
+                          <div class=" highlight hl-scala">
+                            <pre><span></span><span class="c1">//creación de un acumulable de tipo long.</span>
+<span class="k">val</span> <span class="n">accum</span> <span class="k">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">longAccumulator</span><span class="o">(</span><span class="s">"NumPalabras"</span><span class="o">)</span>
+
+<span class="c1">//para cada palabra en mayor6 suma 1. (vendría a ser como un count())</span>
+<span class="n">mayor6</span><span class="o">.</span><span class="n">foreach</span><span class="o">(</span><span class="n">p</span> <span class="k">=></span> <span class="n">accum</span><span class="o">.</span><span class="n">add</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+
+<span class="c1">//consulta del valor acumulado (la variable es de tipo global)</span>
+<span class="c1">//este valor también se puede consultar desde los jobs de Spark, localhost:4040/jobs</span>
+<span class="n">accum</span><span class="o">.</span><span class="n">value</span>
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="output_wrapper">
+                      <div class="output">
+                        <div class="output_area">
+                          <div class="prompt output_prompt">
+                            Out[5]:
+                          </div>
+                          <div class="output_text output_subarea output_execute_result">
+                            <pre>accum: org.apache.spark.util.LongAccumulator = LongAccumulator(id: 26, name: Some(NumPalabras), value: 5140)
+res3: Long = 5140
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- RDD, Dataframe y Dataset
+        ================================================== -->
+          <section id="dataframe-dataset">
+            <div class="page-header">
+              <h1>
+                7. Dataframe - Datasets
+              </h1>
+            </div>
+          </section>
 
         </div>
       </div>
     </div>
-
-
-
-
-  
-
-
     <!-- Footer
     ================================================== -->
     <footer class="footer">
