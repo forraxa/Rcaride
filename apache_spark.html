@@ -2366,6 +2366,259 @@ res3: Long = 5140
               <h1>
                 7. Dataframe - Datasets
               </h1>
+
+              <div class="codigo-scala">
+                <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div  id="notebook-container">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Datasets">Datasets<a class="anchor-link" href="#Datasets"></a></h2><p><strong>Dataset:</strong> Colección de datos con estructura.</p>
+<ul>
+<li>Poseen los beneficios de los RDD</li>
+<li>Evaluación perezosa</li>
+<li>API para Scala y Java</li>
+</ul>
+<h2 id="Dataframe">Dataframe<a class="anchor-link" href="#Dataframe"></a></h2><p><strong>Dataframe:</strong> Colección de datos con estructura organizado en columnas.</p>
+<h2 id="SparkSession">SparkSession<a class="anchor-link" href="#SparkSession"></a></h2><p><strong>SparkSession:</strong> Se utilizan para crear <strong>dataset y dataframe</strong> al igual que se utiliza <strong>SparkContext</strong> para crear <strong>RDD</strong>.</p>
+<p>//creación de SparkSession
+val spark = SparkSession.builder()</p>
+<hr>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Dataframes">Dataframes<a class="anchor-link" href="#Dataframes"></a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-scala"><pre><span></span><span class="k">import</span> <span class="nn">org.apache.spark.sql.SparkSession</span>
+
+<span class="c1">//creación de una SparkSession incluyendo algunas configuraciones.</span>
+<span class="c1">// appName: Nombre de la Aplicación</span>
+<span class="c1">// master: maquina donde se va a ejecutar</span>
+<span class="c1">// getOrCreate: Si existe devuelve sesión anterior sino crea una nueva.</span>
+<span class="k">val</span> <span class="n">spark</span> <span class="k">=</span> <span class="nc">SparkSession</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">appName</span><span class="o">(</span><span class="s">&quot;miApp&quot;</span><span class="o">).</span><span class="n">master</span><span class="o">(</span><span class="s">&quot;local&quot;</span><span class="o">).</span><span class="n">getOrCreate</span><span class="o">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-scala"><pre><span></span><span class="c1">//leer fichero json y convertirlo en dataframe</span>
+<span class="k">val</span> <span class="n">characters</span> <span class="k">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">json</span><span class="o">(</span><span class="s">&quot;./documentos/strangersCharacters.json&quot;</span><span class="o">)</span>
+
+<span class="c1">//show(): mostrar el contenido del dataframe</span>
+<span class="n">characters</span><span class="o">.</span><span class="n">show</span><span class="o">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-scala"><pre><span></span><span class="c1">//ver la estructura del dataframe</span>
+<span class="n">characters</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-scala"><pre><span></span><span class="c1">//imprimir el schema</span>
+<span class="n">characters</span><span class="o">.</span><span class="n">printSchema</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-scala"><pre><span></span><span class="c1">//seleccionar columnas</span>
+<span class="k">val</span> <span class="n">nombres</span> <span class="k">=</span> <span class="n">characters</span><span class="o">.</span><span class="n">select</span><span class="o">(</span><span class="s">&quot;nombre&quot;</span><span class="o">,</span> <span class="s">&quot;edad&quot;</span><span class="o">)</span>
+<span class="n">nombres</span><span class="o">.</span><span class="n">show</span><span class="o">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-scala"><pre><span></span><span class="c1">//filtrar personajes con edad menor a 15 años</span>
+<span class="c1">//$ selecciona la columna</span>
+<span class="k">val</span> <span class="n">children</span> <span class="k">=</span> <span class="n">characters</span><span class="o">.</span><span class="n">filter</span><span class="o">(</span><span class="n">$</span><span class="s">&quot;edad&quot;</span> <span class="o">&lt;</span> <span class="mi">15</span><span class="o">)</span>
+<span class="n">children</span><span class="o">.</span><span class="n">show</span><span class="o">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-scala"><pre><span></span><span class="c1">// primer elemento</span>
+<span class="n">children</span><span class="o">.</span><span class="n">first</span><span class="o">()</span>
+
+<span class="c1">//los 5 primeros elementos</span>
+<span class="n">children</span><span class="o">.</span><span class="n">head</span><span class="o">(</span><span class="mi">5</span><span class="o">)</span>
+
+<span class="c1">//contar elementos</span>
+<span class="n">children</span><span class="o">.</span><span class="n">count</span><span class="o">()</span>
+
+<span class="c1">//agrupar por edad</span>
+<span class="n">characters</span><span class="o">.</span><span class="n">groupBy</span><span class="o">(</span><span class="s">&quot;edad&quot;</span><span class="o">).</span><span class="n">count</span><span class="o">().</span><span class="n">show</span><span class="o">()</span>
+
+<span class="c1">//discribe inspecciona los resultados</span>
+<span class="n">characters</span><span class="o">.</span><span class="n">describe</span><span class="o">().</span><span class="n">show</span><span class="o">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Datasets">Datasets<a class="anchor-link" href="#Datasets"></a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>import org.apache.spark.sql.SparkSession
+val spark = SparkSession.builder.appName("miApp").master("local").getOrCreate()</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-scala"><pre><span></span><span class="c1">//Carga de fichero en RDD invocando a SparkContext</span>
+<span class="k">val</span> <span class="n">sc</span> <span class="k">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">sparkContext</span>
+<span class="k">val</span> <span class="n">text</span> <span class="k">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">textFile</span><span class="o">(</span><span class="s">&quot;documentos/strangersCharacters.txt&quot;</span><span class="o">)</span>
+
+<span class="c1">//se crea la clase personaje para posteriormente asignarselo a text.</span>
+<span class="k">case</span> <span class="k">class</span> <span class="nc">Personaje</span><span class="o">(</span><span class="n">nombre</span><span class="k">:</span> <span class="kt">String</span><span class="o">,</span> <span class="n">edad</span><span class="k">:</span> <span class="kt">Long</span><span class="o">,</span> <span class="n">sexo</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span>
+
+<span class="c1">//Siempre que se trabaje con dataset se ha de importar spark.implicits._</span>
+<span class="k">import</span> <span class="nn">spark.implicits._</span>
+
+<span class="c1">//se importa Row para trabajar con filas.</span>
+<span class="k">import</span> <span class="nn">org.apache.spark.sql.Row</span>
+
+<span class="c1">//separación de palabras por comas.</span>
+<span class="k">val</span> <span class="n">partes</span> <span class="k">=</span> <span class="n">text</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">split</span><span class="o">(</span><span class="s">&quot;,&quot;</span><span class="o">))</span>
+<span class="n">partes</span><span class="o">.</span><span class="n">collect</span><span class="o">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-scala"><pre><span></span><span class="c1">//convertir partes a objeto de tipo personajes.</span>
+<span class="c1">//con la función map se recorre cada uno de los arrays y se crea una clase personaje.</span>
+<span class="c1">//con trim se eliminan los espacios por delante y por detrás.  </span>
+
+<span class="k">val</span> <span class="n">personajes</span> <span class="k">=</span> <span class="n">partes</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">atr</span> <span class="k">=&gt;</span> <span class="nc">Personaje</span><span class="o">(</span><span class="n">atr</span><span class="o">(</span><span class="mi">0</span><span class="o">),</span> <span class="n">atr</span><span class="o">(</span><span class="mi">1</span><span class="o">).</span><span class="n">trim</span><span class="o">.</span><span class="n">toInt</span><span class="o">,</span> <span class="n">atr</span><span class="o">(</span><span class="mi">2</span><span class="o">))).</span><span class="n">toDS</span><span class="o">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-scala"><pre><span></span><span class="c1">//filtrar datos por edad</span>
+<span class="n">personajes</span><span class="o">.</span><span class="n">where</span><span class="o">(</span><span class="n">$</span><span class="s">&quot;edad&quot;</span> <span class="o">&gt;</span><span class="mi">13</span><span class="o">)</span>
+
+<span class="c1">//personaje con la máxima edad</span>
+<span class="n">personajes</span><span class="o">.</span><span class="n">agg</span><span class="o">(</span><span class="n">max</span><span class="o">(</span><span class="n">$</span><span class="s">&quot;edad&quot;</span><span class="o">))</span>
+
+<span class="c1">//seleccionar los 5 primeros personajes en formato lista.</span>
+<span class="n">personajes</span><span class="o">.</span><span class="n">takeAsList</span><span class="o">(</span><span class="mi">5</span><span class="o">)</span>
+
+<span class="c1">//pasar de dataset a dataframe</span>
+<span class="k">val</span> <span class="n">personajesDF</span> <span class="k">=</span> <span class="n">personajes</span><span class="o">.</span><span class="n">toDF</span><span class="o">(</span><span class="s">&quot;nombre&quot;</span><span class="o">,</span> <span class="s">&quot;edad&quot;</span><span class="o">,</span> <span class="s">&quot;sexo&quot;</span><span class="o">)</span>
+
+<span class="c1">//pasar de dataset a RDD</span>
+<span class="n">personajes</span><span class="o">.</span><span class="n">rdd</span>
+
+<span class="c1">//volcar el contenido de dataset a fichero</span>
+<span class="k">val</span> <span class="n">nombreEdad</span> <span class="k">=</span> <span class="n">personajesDF</span><span class="o">.</span><span class="n">select</span><span class="o">(</span><span class="s">&quot;nombre&quot;</span><span class="o">,</span><span class="s">&quot;edad&quot;</span><span class="o">)</span>
+
+<span class="c1">//guardado en formato parquet</span>
+<span class="n">nombreEdad</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">save</span><span class="o">(</span><span class="s">&quot;/Ejercicios/documentos/personajesParquet&quot;</span><span class="o">)</span>
+
+<span class="c1">//guardado en formato json</span>
+<span class="n">nombreEdad</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">save</span><span class="o">.</span><span class="n">json</span><span class="o">(</span><span class="s">&quot;/Ejercicios/documentos/personajesJSON&quot;</span><span class="o">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+    </div>
+  </div>
+              </div>
             </div>
           </section>
 
