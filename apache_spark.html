@@ -139,6 +139,11 @@
                 7. Dataframe y Dataset
               </a>
             </li>
+            <li>
+              <a href="#vistas">
+                8. Vistas
+              </a>
+            </li>
           </ul>
         </div>
         <div class="span9">
@@ -1062,7 +1067,7 @@ import org.apache.spark.SparkContext
 import org.apache.spark.rdd.RDD
 cadenas: Array[String] = Array(spark, hadoop, hdfs, spark, hdfs)
 cadenasRDD: org.apache.spark.rdd.RDD[String] = ParallelCollectionRDD[0] at parallelize at <console>:34
-</pre>
+</console></pre>
                           </div>
                         </div>
                       </div>
@@ -1113,7 +1118,7 @@ cadenasRDD: org.apache.spark.rdd.RDD[String] = ParallelCollectionRDD[0] at paral
                           <div class="output_text output_subarea output_execute_result">
                             <pre>cadenasMayusculas: org.apache.spark.rdd.RDD[String] = MapPartitionsRDD[1] at map at <console>:33
 res0: Array[String] = Array(SPARK, HADOOP, HDFS, SPARK, HDFS)
-</pre>
+</console></pre>
                           </div>
                         </div>
                       </div>
@@ -1159,7 +1164,7 @@ res0: Array[String] = Array(SPARK, HADOOP, HDFS, SPARK, HDFS)
                           <div class="output_text output_subarea output_execute_result">
                             <pre>data: org.apache.spark.rdd.RDD[String] = MapPartitionsRDD[2] at filter at <console>:33
 res1: Array[String] = Array(SPARK, SPARK)
-</pre>
+</console></pre>
                           </div>
                         </div>
                       </div>
@@ -1205,7 +1210,7 @@ res1: Array[String] = Array(SPARK, SPARK)
                           <div class="output_text output_subarea output_execute_result">
                             <pre>mayusculas: org.apache.spark.rdd.RDD[Char] = MapPartitionsRDD[3] at flatMap at <console>:31
 res2: Array[Char] = Array(S, P, A, R, K, H, A, D, O, O, P, H, D, F, S, S, P, A, R, K, H, D, F, S)
-</pre>
+</console></pre>
                           </div>
                         </div>
                       </div>
@@ -1235,7 +1240,7 @@ res2: Array[Char] = Array(S, P, A, R, K, H, A, D, O, O, P, H, D, F, S, S, P, A, 
                           <div class="output_text output_subarea output_execute_result">
                             <pre>mayusLength: org.apache.spark.rdd.RDD[Any] = MapPartitionsRDD[4] at flatMap at <console>:31
 res3: Array[Any] = Array(SPARK, 5, HADOOP, 6, HDFS, 4, SPARK, 5, HDFS, 4)
-</pre>
+</console></pre>
                           </div>
                         </div>
                       </div>
@@ -1281,7 +1286,7 @@ res3: Array[Any] = Array(SPARK, 5, HADOOP, 6, HDFS, 4, SPARK, 5, HDFS, 4)
                           <div class="output_text output_subarea output_execute_result">
                             <pre>cadenasBoth: org.apache.spark.rdd.RDD[String] = UnionRDD[5] at union at <console>:33
 res4: Array[String] = Array(spark, hadoop, hdfs, spark, hdfs, SPARK, HADOOP, HDFS, SPARK, HDFS)
-</pre>
+</console></pre>
                           </div>
                         </div>
                       </div>
@@ -1372,7 +1377,7 @@ res4: Array[String] = Array(spark, hadoop, hdfs, spark, hdfs, SPARK, HADOOP, HDF
                           <div class="output_text output_subarea output_execute_result">
                             <pre>parCV: org.apache.spark.rdd.RDD[(String, Int)] = MapPartitionsRDD[9] at map at <console>:32
 res6: Array[(String, Int)] = Array((spark,1), (hadoop,1), (hdfs,1), (spark,1), (hdfs,1))
-</pre>
+</console></pre>
                           </div>
                         </div>
                       </div>
@@ -1403,7 +1408,7 @@ res6: Array[(String, Int)] = Array((spark,1), (hadoop,1), (hdfs,1), (spark,1), (
                           <div class="output_text output_subarea output_execute_result">
                             <pre>group: org.apache.spark.rdd.RDD[(String, Iterable[Int])] = ShuffledRDD[10] at groupByKey at <console>:34
 res7: Array[(String, Iterable[Int])] = Array((hadoop,CompactBuffer(1)), (hdfs,CompactBuffer(1, 1)), (spark,CompactBuffer(1, 1)))
-</pre>
+</console></pre>
                           </div>
                         </div>
                       </div>
@@ -1451,7 +1456,7 @@ res7: Array[(String, Iterable[Int])] = Array((hadoop,CompactBuffer(1)), (hdfs,Co
                           <div class="output_text output_subarea output_execute_result">
                             <pre>suma: org.apache.spark.rdd.RDD[(String, Int)] = ShuffledRDD[11] at reduceByKey at <console>:35
 res8: Array[(String, Int)] = Array((hadoop,1), (hdfs,2), (spark,2))
-</pre>
+</console></pre>
                           </div>
                         </div>
                       </div>
@@ -1646,7 +1651,7 @@ import org.apache.spark.rdd.RDD
 cadenas: Array[String] = Array(spark, hadoop, hdfs, spark, hdfs)
 cadenasRDD: org.apache.spark.rdd.RDD[String] = ParallelCollectionRDD[0] at parallelize at <console>:34
 numerosRDD: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[1] at parallelize at <console>:37
-</pre>
+</console></console></pre>
                           </div>
                         </div>
                       </div>
@@ -1962,7 +1967,7 @@ numerosRDD: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[1] at parallel
                           <div class="output_text output_subarea output_execute_result">
                             <pre>parCV: org.apache.spark.rdd.RDD[(String, Int)] = MapPartitionsRDD[2] at map at <console>:32
 res6: Array[(String, Int)] = Array((spark,1), (hadoop,1), (hdfs,1), (spark,1), (hdfs,1))
-</pre>
+</console></pre>
                           </div>
                         </div>
                       </div>
@@ -2120,7 +2125,7 @@ La palabra es hdfs
             </p>
             <div class="scala-codigo">
               <div class="border-box-sizing" id="notebook" tabindex="-1">
-                <div  id="notebook-container">
+                <div id="notebook-container">
                   <div class="cell border-box-sizing code_cell rendered">
                     <div class="input">
                       <div class="prompt input_prompt">
@@ -2199,7 +2204,7 @@ import org.apache.spark.storage.StorageLevel
                           <div class="output_text output_subarea output_execute_result">
                             <pre>fileMemory: org.apache.spark.rdd.RDD[String] = ./documentos/persistenciaFile MapPartitionsRDD[1] at textFile at <console>:29
 res0: fileMemory.type = ./documentos/persistenciaFile MapPartitionsRDD[1] at textFile at <console>:29
-</pre>
+</console></console></pre>
                           </div>
                         </div>
                       </div>
@@ -2252,7 +2257,7 @@ res0: fileMemory.type = ./documentos/persistenciaFile MapPartitionsRDD[1] at tex
                             <pre>timestampInicio: Long = 1532079941254
 mayor6: org.apache.spark.rdd.RDD[String] = MapPartitionsRDD[3] at filter at <console>:38
 timestampFin: Long = 1532079942420
-</pre>
+</console></pre>
                           </div>
                         </div>
                       </div>
@@ -2281,7 +2286,7 @@ timestampFin: Long = 1532079942420
                           </div>
                           <div class="output_text output_subarea output_execute_result">
                             <pre>res2: fileMemory.type = ./documentos/persistenciaFile MapPartitionsRDD[1] at textFile at <console>:29
-</pre>
+</console></pre>
                           </div>
                         </div>
                       </div>
@@ -2358,7 +2363,6 @@ res3: Long = 5140
               </div>
             </div>
           </section>
-
           <!-- RDD, Dataframe y Dataset
         ================================================== -->
           <section id="dataframe-dataset">
@@ -2366,138 +2370,208 @@ res3: Long = 5140
               <h1>
                 7. Dataframe - Datasets
               </h1>
-
               <div class="codigo-scala">
-                <div tabindex="-1" id="notebook" class="border-box-sizing">
-    <div  id="notebook-container">
-
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Datasets">Datasets<a class="anchor-link" href="#Datasets"></a></h2><p><strong>Dataset:</strong> Colección de datos con estructura.</p>
-<ul>
-<li>Poseen los beneficios de los RDD</li>
-<li>Evaluación perezosa</li>
-<li>API para Scala y Java</li>
-</ul>
-<h2 id="Dataframe">Dataframe<a class="anchor-link" href="#Dataframe"></a></h2><p><strong>Dataframe:</strong> Colección de datos con estructura organizado en columnas.</p>
-<h2 id="SparkSession">SparkSession<a class="anchor-link" href="#SparkSession"></a></h2><p><strong>SparkSession:</strong> Se utilizan para crear <strong>dataset y dataframe</strong> al igual que se utiliza <strong>SparkContext</strong> para crear <strong>RDD</strong>.</p>
-<p>//creación de SparkSession
-val spark = SparkSession.builder()</p>
-<hr>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Dataframes">Dataframes<a class="anchor-link" href="#Dataframes"></a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">import</span> <span class="nn">org.apache.spark.sql.SparkSession</span>
+                <div class="border-box-sizing" id="notebook" tabindex="-1">
+                  <div id="notebook-container">
+                    <div class="cell border-box-sizing text_cell rendered">
+                      <div class="prompt input_prompt">
+                      </div>
+                      <div class="inner_cell">
+                        <div class="text_cell_render border-box-sizing rendered_html">
+                          <h2 id="Datasets">
+                            Datasets
+                            <a class="anchor-link" href="#Datasets">
+                            </a>
+                          </h2>
+                          <p>
+                            <strong>
+                              Dataset:
+                            </strong>
+                            Colección de datos con estructura.
+                          </p>
+                          <ul>
+                            <li>
+                              Poseen los beneficios de los RDD
+                            </li>
+                            <li>
+                              Evaluación perezosa
+                            </li>
+                            <li>
+                              API para Scala y Java
+                            </li>
+                          </ul>
+                          <h2 id="Dataframe">
+                            Dataframe
+                            <a class="anchor-link" href="#Dataframe">
+                            </a>
+                          </h2>
+                          <p>
+                            <strong>
+                              Dataframe:
+                            </strong>
+                            Colección de datos con estructura organizado en columnas.
+                          </p>
+                          <h2 id="SparkSession">
+                            SparkSession
+                            <a class="anchor-link" href="#SparkSession">
+                            </a>
+                          </h2>
+                          <p>
+                            <strong>
+                              SparkSession:
+                            </strong>
+                            Se utilizan para crear
+                            <strong>
+                              dataset y dataframe
+                            </strong>
+                            al igual que se utiliza
+                            <strong>
+                              SparkContext
+                            </strong>
+                            para crear
+                            <strong>
+                              RDD
+                            </strong>
+                            .
+                          </p>
+                          <p>
+                            //creación de SparkSession
+val spark = SparkSession.builder()
+                          </p>
+                          <hr>
+                          </hr>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell border-box-sizing text_cell rendered">
+                      <div class="prompt input_prompt">
+                      </div>
+                      <div class="inner_cell">
+                        <div class="text_cell_render border-box-sizing rendered_html">
+                          <h2 id="Dataframes">
+                            Dataframes
+                            <a class="anchor-link" href="#Dataframes">
+                            </a>
+                          </h2>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell border-box-sizing code_cell rendered">
+                      <div class="input">
+                        <div class="prompt input_prompt">
+                          In [ ]:
+                        </div>
+                        <div class="inner_cell">
+                          <div class="input_area">
+                            <div class=" highlight hl-scala">
+                              <pre><span></span><span class="k">import</span> <span class="nn">org.apache.spark.sql.SparkSession</span>
 
 <span class="c1">//creación de una SparkSession incluyendo algunas configuraciones.</span>
 <span class="c1">// appName: Nombre de la Aplicación</span>
 <span class="c1">// master: maquina donde se va a ejecutar</span>
 <span class="c1">// getOrCreate: Si existe devuelve sesión anterior sino crea una nueva.</span>
-<span class="k">val</span> <span class="n">spark</span> <span class="k">=</span> <span class="nc">SparkSession</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">appName</span><span class="o">(</span><span class="s">&quot;miApp&quot;</span><span class="o">).</span><span class="n">master</span><span class="o">(</span><span class="s">&quot;local&quot;</span><span class="o">).</span><span class="n">getOrCreate</span><span class="o">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">//leer fichero json y convertirlo en dataframe</span>
-<span class="k">val</span> <span class="n">characters</span> <span class="k">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">json</span><span class="o">(</span><span class="s">&quot;./documentos/strangersCharacters.json&quot;</span><span class="o">)</span>
+<span class="k">val</span> <span class="n">spark</span> <span class="k">=</span> <span class="nc">SparkSession</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">appName</span><span class="o">(</span><span class="s">"miApp"</span><span class="o">).</span><span class="n">master</span><span class="o">(</span><span class="s">"local"</span><span class="o">).</span><span class="n">getOrCreate</span><span class="o">()</span>
+</pre>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell border-box-sizing code_cell rendered">
+                      <div class="input">
+                        <div class="prompt input_prompt">
+                          In [ ]:
+                        </div>
+                        <div class="inner_cell">
+                          <div class="input_area">
+                            <div class=" highlight hl-scala">
+                              <pre><span></span><span class="c1">//leer fichero json y convertirlo en dataframe</span>
+<span class="k">val</span> <span class="n">characters</span> <span class="k">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">json</span><span class="o">(</span><span class="s">"./documentos/strangersCharacters.json"</span><span class="o">)</span>
 
 <span class="c1">//show(): mostrar el contenido del dataframe</span>
 <span class="n">characters</span><span class="o">.</span><span class="n">show</span><span class="o">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">//ver la estructura del dataframe</span>
+</pre>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell border-box-sizing code_cell rendered">
+                      <div class="input">
+                        <div class="prompt input_prompt">
+                          In [ ]:
+                        </div>
+                        <div class="inner_cell">
+                          <div class="input_area">
+                            <div class=" highlight hl-scala">
+                              <pre><span></span><span class="c1">//ver la estructura del dataframe</span>
 <span class="n">characters</span><span class="o">.</span><span class="n">columns</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">//imprimir el schema</span>
+</pre>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell border-box-sizing code_cell rendered">
+                      <div class="input">
+                        <div class="prompt input_prompt">
+                          In [ ]:
+                        </div>
+                        <div class="inner_cell">
+                          <div class="input_area">
+                            <div class=" highlight hl-scala">
+                              <pre><span></span><span class="c1">//imprimir el schema</span>
 <span class="n">characters</span><span class="o">.</span><span class="n">printSchema</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">//seleccionar columnas</span>
-<span class="k">val</span> <span class="n">nombres</span> <span class="k">=</span> <span class="n">characters</span><span class="o">.</span><span class="n">select</span><span class="o">(</span><span class="s">&quot;nombre&quot;</span><span class="o">,</span> <span class="s">&quot;edad&quot;</span><span class="o">)</span>
+</pre>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell border-box-sizing code_cell rendered">
+                      <div class="input">
+                        <div class="prompt input_prompt">
+                          In [ ]:
+                        </div>
+                        <div class="inner_cell">
+                          <div class="input_area">
+                            <div class=" highlight hl-scala">
+                              <pre><span></span><span class="c1">//seleccionar columnas</span>
+<span class="k">val</span> <span class="n">nombres</span> <span class="k">=</span> <span class="n">characters</span><span class="o">.</span><span class="n">select</span><span class="o">(</span><span class="s">"nombre"</span><span class="o">,</span> <span class="s">"edad"</span><span class="o">)</span>
 <span class="n">nombres</span><span class="o">.</span><span class="n">show</span><span class="o">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">//filtrar personajes con edad menor a 15 años</span>
+</pre>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell border-box-sizing code_cell rendered">
+                      <div class="input">
+                        <div class="prompt input_prompt">
+                          In [ ]:
+                        </div>
+                        <div class="inner_cell">
+                          <div class="input_area">
+                            <div class=" highlight hl-scala">
+                              <pre><span></span><span class="c1">//filtrar personajes con edad menor a 15 años</span>
 <span class="c1">//$ selecciona la columna</span>
-<span class="k">val</span> <span class="n">children</span> <span class="k">=</span> <span class="n">characters</span><span class="o">.</span><span class="n">filter</span><span class="o">(</span><span class="n">$</span><span class="s">&quot;edad&quot;</span> <span class="o">&lt;</span> <span class="mi">15</span><span class="o">)</span>
+<span class="k">val</span> <span class="n">children</span> <span class="k">=</span> <span class="n">characters</span><span class="o">.</span><span class="n">filter</span><span class="o">(</span><span class="n">$</span><span class="s">"edad"</span> <span class="o"><</span> <span class="mi">15</span><span class="o">)</span>
 <span class="n">children</span><span class="o">.</span><span class="n">show</span><span class="o">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">// primer elemento</span>
+</pre>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell border-box-sizing code_cell rendered">
+                      <div class="input">
+                        <div class="prompt input_prompt">
+                          In [ ]:
+                        </div>
+                        <div class="inner_cell">
+                          <div class="input_area">
+                            <div class=" highlight hl-scala">
+                              <pre><span></span><span class="c1">// primer elemento</span>
 <span class="n">children</span><span class="o">.</span><span class="n">first</span><span class="o">()</span>
 
 <span class="c1">//los 5 primeros elementos</span>
@@ -2507,43 +2581,52 @@ val spark = SparkSession.builder()</p>
 <span class="n">children</span><span class="o">.</span><span class="n">count</span><span class="o">()</span>
 
 <span class="c1">//agrupar por edad</span>
-<span class="n">characters</span><span class="o">.</span><span class="n">groupBy</span><span class="o">(</span><span class="s">&quot;edad&quot;</span><span class="o">).</span><span class="n">count</span><span class="o">().</span><span class="n">show</span><span class="o">()</span>
+<span class="n">characters</span><span class="o">.</span><span class="n">groupBy</span><span class="o">(</span><span class="s">"edad"</span><span class="o">).</span><span class="n">count</span><span class="o">().</span><span class="n">show</span><span class="o">()</span>
 
 <span class="c1">//discribe inspecciona los resultados</span>
 <span class="n">characters</span><span class="o">.</span><span class="n">describe</span><span class="o">().</span><span class="n">show</span><span class="o">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Datasets">Datasets<a class="anchor-link" href="#Datasets"></a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>import org.apache.spark.sql.SparkSession
-val spark = SparkSession.builder.appName("miApp").master("local").getOrCreate()</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">//Carga de fichero en RDD invocando a SparkContext</span>
+</pre>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell border-box-sizing text_cell rendered">
+                      <div class="prompt input_prompt">
+                      </div>
+                      <div class="inner_cell">
+                        <div class="text_cell_render border-box-sizing rendered_html">
+                          <h2 id="Datasets">
+                            Datasets
+                            <a class="anchor-link" href="#Datasets">
+                            </a>
+                          </h2>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell border-box-sizing text_cell rendered">
+                      <div class="prompt input_prompt">
+                      </div>
+                      <div class="inner_cell">
+                        <div class="text_cell_render border-box-sizing rendered_html">
+                          <p>
+                            import org.apache.spark.sql.SparkSession</p>
+<p>val spark = SparkSession.builder.appName("miApp").master("local").getOrCreate()
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell border-box-sizing code_cell rendered">
+                      <div class="input">
+                        <div class="prompt input_prompt">
+                          In [ ]:
+                        </div>
+                        <div class="inner_cell">
+                          <div class="input_area">
+                            <div class=" highlight hl-scala">
+                              <pre><span></span><span class="c1">//Carga de fichero en RDD invocando a SparkContext</span>
 <span class="k">val</span> <span class="n">sc</span> <span class="k">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">sparkContext</span>
-<span class="k">val</span> <span class="n">text</span> <span class="k">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">textFile</span><span class="o">(</span><span class="s">&quot;documentos/strangersCharacters.txt&quot;</span><span class="o">)</span>
+<span class="k">val</span> <span class="n">text</span> <span class="k">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">textFile</span><span class="o">(</span><span class="s">"documentos/strangersCharacters.txt"</span><span class="o">)</span>
 
 <span class="c1">//se crea la clase personaje para posteriormente asignarselo a text.</span>
 <span class="k">case</span> <span class="k">class</span> <span class="nc">Personaje</span><span class="o">(</span><span class="n">nombre</span><span class="k">:</span> <span class="kt">String</span><span class="o">,</span> <span class="n">edad</span><span class="k">:</span> <span class="kt">Long</span><span class="o">,</span> <span class="n">sexo</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span>
@@ -2555,73 +2638,448 @@ val spark = SparkSession.builder.appName("miApp").master("local").getOrCreate()<
 <span class="k">import</span> <span class="nn">org.apache.spark.sql.Row</span>
 
 <span class="c1">//separación de palabras por comas.</span>
-<span class="k">val</span> <span class="n">partes</span> <span class="k">=</span> <span class="n">text</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">split</span><span class="o">(</span><span class="s">&quot;,&quot;</span><span class="o">))</span>
+<span class="k">val</span> <span class="n">partes</span> <span class="k">=</span> <span class="n">text</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">split</span><span class="o">(</span><span class="s">","</span><span class="o">))</span>
 <span class="n">partes</span><span class="o">.</span><span class="n">collect</span><span class="o">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">//convertir partes a objeto de tipo personajes.</span>
+</pre>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell border-box-sizing code_cell rendered">
+                      <div class="input">
+                        <div class="prompt input_prompt">
+                          In [ ]:
+                        </div>
+                        <div class="inner_cell">
+                          <div class="input_area">
+                            <div class=" highlight hl-scala">
+                              <pre><span></span><span class="c1">//convertir partes a objeto de tipo personajes.</span>
 <span class="c1">//con la función map se recorre cada uno de los arrays y se crea una clase personaje.</span>
 <span class="c1">//con trim se eliminan los espacios por delante y por detrás.  </span>
 
-<span class="k">val</span> <span class="n">personajes</span> <span class="k">=</span> <span class="n">partes</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">atr</span> <span class="k">=&gt;</span> <span class="nc">Personaje</span><span class="o">(</span><span class="n">atr</span><span class="o">(</span><span class="mi">0</span><span class="o">),</span> <span class="n">atr</span><span class="o">(</span><span class="mi">1</span><span class="o">).</span><span class="n">trim</span><span class="o">.</span><span class="n">toInt</span><span class="o">,</span> <span class="n">atr</span><span class="o">(</span><span class="mi">2</span><span class="o">))).</span><span class="n">toDS</span><span class="o">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">//filtrar datos por edad</span>
-<span class="n">personajes</span><span class="o">.</span><span class="n">where</span><span class="o">(</span><span class="n">$</span><span class="s">&quot;edad&quot;</span> <span class="o">&gt;</span><span class="mi">13</span><span class="o">)</span>
+<span class="k">val</span> <span class="n">personajes</span> <span class="k">=</span> <span class="n">partes</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">atr</span> <span class="k">=></span> <span class="nc">Personaje</span><span class="o">(</span><span class="n">atr</span><span class="o">(</span><span class="mi">0</span><span class="o">),</span> <span class="n">atr</span><span class="o">(</span><span class="mi">1</span><span class="o">).</span><span class="n">trim</span><span class="o">.</span><span class="n">toInt</span><span class="o">,</span> <span class="n">atr</span><span class="o">(</span><span class="mi">2</span><span class="o">))).</span><span class="n">toDS</span><span class="o">()</span>
+</pre>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell border-box-sizing code_cell rendered">
+                      <div class="input">
+                        <div class="prompt input_prompt">
+                          In [ ]:
+                        </div>
+                        <div class="inner_cell">
+                          <div class="input_area">
+                            <div class=" highlight hl-scala">
+                              <pre><span></span><span class="c1">//filtrar datos por edad</span>
+<span class="n">personajes</span><span class="o">.</span><span class="n">where</span><span class="o">(</span><span class="n">$</span><span class="s">"edad"</span> <span class="o">></span><span class="mi">13</span><span class="o">)</span>
 
 <span class="c1">//personaje con la máxima edad</span>
-<span class="n">personajes</span><span class="o">.</span><span class="n">agg</span><span class="o">(</span><span class="n">max</span><span class="o">(</span><span class="n">$</span><span class="s">&quot;edad&quot;</span><span class="o">))</span>
+<span class="n">personajes</span><span class="o">.</span><span class="n">agg</span><span class="o">(</span><span class="n">max</span><span class="o">(</span><span class="n">$</span><span class="s">"edad"</span><span class="o">))</span>
 
 <span class="c1">//seleccionar los 5 primeros personajes en formato lista.</span>
 <span class="n">personajes</span><span class="o">.</span><span class="n">takeAsList</span><span class="o">(</span><span class="mi">5</span><span class="o">)</span>
 
 <span class="c1">//pasar de dataset a dataframe</span>
-<span class="k">val</span> <span class="n">personajesDF</span> <span class="k">=</span> <span class="n">personajes</span><span class="o">.</span><span class="n">toDF</span><span class="o">(</span><span class="s">&quot;nombre&quot;</span><span class="o">,</span> <span class="s">&quot;edad&quot;</span><span class="o">,</span> <span class="s">&quot;sexo&quot;</span><span class="o">)</span>
+<span class="k">val</span> <span class="n">personajesDF</span> <span class="k">=</span> <span class="n">personajes</span><span class="o">.</span><span class="n">toDF</span><span class="o">(</span><span class="s">"nombre"</span><span class="o">,</span> <span class="s">"edad"</span><span class="o">,</span> <span class="s">"sexo"</span><span class="o">)</span>
 
 <span class="c1">//pasar de dataset a RDD</span>
 <span class="n">personajes</span><span class="o">.</span><span class="n">rdd</span>
 
 <span class="c1">//volcar el contenido de dataset a fichero</span>
-<span class="k">val</span> <span class="n">nombreEdad</span> <span class="k">=</span> <span class="n">personajesDF</span><span class="o">.</span><span class="n">select</span><span class="o">(</span><span class="s">&quot;nombre&quot;</span><span class="o">,</span><span class="s">&quot;edad&quot;</span><span class="o">)</span>
+<span class="k">val</span> <span class="n">nombreEdad</span> <span class="k">=</span> <span class="n">personajesDF</span><span class="o">.</span><span class="n">select</span><span class="o">(</span><span class="s">"nombre"</span><span class="o">,</span><span class="s">"edad"</span><span class="o">)</span>
 
 <span class="c1">//guardado en formato parquet</span>
-<span class="n">nombreEdad</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">save</span><span class="o">(</span><span class="s">&quot;/Ejercicios/documentos/personajesParquet&quot;</span><span class="o">)</span>
+<span class="n">nombreEdad</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">save</span><span class="o">(</span><span class="s">"/Ejercicios/documentos/personajesParquet"</span><span class="o">)</span>
 
 <span class="c1">//guardado en formato json</span>
-<span class="n">nombreEdad</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">save</span><span class="o">.</span><span class="n">json</span><span class="o">(</span><span class="s">&quot;/Ejercicios/documentos/personajesJSON&quot;</span><span class="o">)</span>
+<span class="n">nombreEdad</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">save</span><span class="o">.</span><span class="n">json</span><span class="o">(</span><span class="s">"/Ejercicios/documentos/personajesJSON"</span><span class="o">)</span>
+</pre>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="vistas">
+            <div class="page-header">
+              <h1>
+                8. Vistas
+              </h1>
+            </div>
+            <ul>
+              <li>Las <strong>Vistas</strong> permiten lanzar <strong>consultas SQL</strong> sobre los<strong> DataFrame</strong></li>
+              <li>Existen Vistas <strong>Temporales y Globales</strong> </li>
+            </ul>
+            <hr>
+            <p><strong>Vistas Temporales:</strong></p>
+            <ul>
+              <li>Disponible únicamente en la sesión donde se crea.</li>
+              <li>Se ha de asignar un nombre a la <strong>Vista</strong> que será el <strong>nombre de la tabla</strong></li>
+            </ul>
+            <p>df.createOrReplaceTempview("nombre")</p>
+            <hr>
+            <p><strong>Vistas Globales:</strong></p>
+            <ul>
+              <li>Disponible en nuevas sesiones.</li>
+              <li>Se consulta añadiendo <strong>global_temp</strong> antes del nombre</li>
+            </ul>
+            <p>df.createOrReplaceTempview("people")</p>
+            <p>spark.sql("SELECT * FROM global_temp.people")</p>
+            <hr>
+            <div class="codigo-scala">
+              <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div id="notebook-container">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Vistas-temporales:">Vistas temporales:<a class="anchor-link" href="#Vistas-temporales:"></a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-scala"><pre><span></span><span class="c1">// carga de fichero</span>
+<span class="k">val</span> <span class="n">tweetJson</span> <span class="k">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">json</span><span class="o">(</span><span class="s">&quot;./documentos/large-17-json&quot;</span><span class="o">)</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
+<div class="output_text output_subarea ">
+<pre>Intitializing Scala interpreter ...</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
+<div class="output_text output_subarea ">
+<pre>Spark Web UI available at http://10.0.2.15:4040
+SparkContext available as &#39;sc&#39; (version = 2.3.0, master = local[*], app id = local-1532257222616)
+SparkSession available as &#39;spark&#39;
+</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[1]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tweetJson: org.apache.spark.sql.DataFrame = [contributors: string, coordinates: struct&lt;coordinates: array&lt;double&gt;, type: string&gt; ... 22 more fields]
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-scala"><pre><span></span><span class="c1">// crear Vista</span>
+<span class="n">tweetJson</span><span class="o">.</span><span class="n">createOrReplaceTempView</span><span class="o">(</span><span class="s">&quot;tweets&quot;</span><span class="o">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-scala"><pre><span></span><span class="k">val</span> <span class="n">usuarios</span> <span class="k">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="o">(</span><span class="s">&quot;SELECT user.screen_name FROM tweets WHERE user.followers_count &gt; 300000&quot;</span><span class="o">)</span>
+<span class="n">usuarios</span><span class="o">.</span><span class="n">show</span><span class="o">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>+--------------+
+|   screen_name|
++--------------+
+|   SpeakComedy|
+|      AnnCurry|
+|      AnnCurry|
+|       BBCNews|
+|           CNN|
+|       AndyBVB|
+|   TPO_Hisself|
+|          TIME|
+|HuffingtonPost|
+|     ObamaNews|
+|   TPO_Hisself|
+|       gmanews|
+|     wikileaks|
+|     nikestore|
+|       Foro_TV|
+|          Wale|
+|      politico|
+| DRUDGE_REPORT|
+|   UniNoticias|
+|      sherlyny|
++--------------+
+only showing top 20 rows
+
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[11]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>usuarios: org.apache.spark.sql.DataFrame = [screen_name: string]
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-scala"><pre><span></span><span class="c1">// buscar tweets en español con mayor número de hashtags</span>
+<span class="k">val</span> <span class="n">tweetsSpanish</span> <span class="k">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="o">(</span><span class="s">&quot;SELECT created_at, user.name, entities.hashtags.text FROM tweets WHERE lang = &#39;es&#39; AND size(entities.hashtags.text) &gt; 0&quot;</span><span class="o">);</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[13]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tweetsSpanish: org.apache.spark.sql.DataFrame = [created_at: string, name: string ... 1 more field]
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-scala"><pre><span></span><span class="n">tweetsSpanish</span><span class="o">.</span><span class="n">show</span><span class="o">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>+--------------------+--------------------+--------------------+
+|          created_at|                name|                text|
++--------------------+--------------------+--------------------+
+|Fri Dec 21 22:53:...|           elbabas11|            [currar]|
+|Fri Dec 21 22:53:...|         GO HEAD GUY|                [FF]|
+|Fri Dec 21 22:53:...|                    |                [ff]|
+|Fri Dec 21 22:53:...|                 *.*|[culpadelbaktúnmaya]|
+|Fri Dec 21 22:54:...|      MIL PALABRAS. |      [buenasnoches]|
+|Fri Dec 21 22:54:...|       soy un arroz-|  [PaRomeoConSuperQ]|
+|Fri Dec 21 22:54:...|         Over Again♥|           [Imagina]|
+|Fri Dec 21 22:54:...|   Diario Estrategia|[AHORA, abismofis...|
+|Fri Dec 21 22:54:...|           Jon Ayala|[TuitUtil, FF, Tu...|
+|Fri Dec 21 22:54:...|       A.C. New Camp|        [soundcloud]|
+|Fri Dec 21 22:54:...|              Emilia|      [FF, TuitUtil]|
+|Fri Dec 21 22:54:...|           Cupcake ღ|      [FF, TuitUtil]|
+|Fri Dec 21 22:54:...|     Nelson Barroeta|              [loba]|
+|Fri Dec 21 22:54:...|         rocio malik|[siyofuerasantacl...|
+|Fri Dec 21 22:54:...|               jonny|     [MartesDeTetas]|
+|Fri Dec 21 22:54:...|              Aldi †|   [EstoyComoQuiero]|
+|Fri Dec 21 22:54:...|      Lucía Luaces ♥|       [VALDOVELVET]|
+|Fri Dec 21 22:54:...|      Elena Iglesias|      [feliznavidad]|
+|Fri Dec 21 22:54:...|        ♬Hinojosa ⑨™|      [FF, TuitUtil]|
+|Fri Dec 21 22:54:...|            Ifigenia|[cancionesdeAgüitas]|
++--------------------+--------------------+--------------------+
+only showing top 20 rows
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<h2 id="Vistas-globales:">Vistas globales:<a class="anchor-link" href="#Vistas-globales:"></a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-scala"><pre><span></span><span class="c1">// se crea una nueva sesión</span>
+<span class="k">val</span> <span class="n">spark2</span> <span class="k">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">newSession</span><span class="o">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[17]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>spark2: org.apache.spark.sql.SparkSession = org.apache.spark.sql.SparkSession@1b8be9e9
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-scala"><pre><span></span><span class="n">tweetJson</span><span class="o">.</span><span class="n">createOrReplaceGlobalTempView</span><span class="o">(</span><span class="s">&quot;tweets_global&quot;</span><span class="o">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-scala"><pre><span></span><span class="n">spark2</span><span class="o">.</span><span class="n">sql</span><span class="o">(</span><span class="s">&quot;SELECT * FROM global_temp.tweets_global&quot;</span><span class="o">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[25]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>res17: org.apache.spark.sql.DataFrame = [contributors: string, coordinates: struct&lt;coordinates: array&lt;double&gt;, type: string&gt; ... 22 more fields]
+</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
 </div>
     </div>
   </div>
-              </div>
             </div>
-          </section>
-
+           </section>  
         </div>
       </div>
     </div>
