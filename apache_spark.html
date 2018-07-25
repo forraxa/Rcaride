@@ -144,6 +144,16 @@
                 8. Vistas
               </a>
             </li>
+            <li>
+              <a href="#structured-streaming">
+                9. Structured Streaming
+              </a>
+            </li>
+            <li>
+              <a href="#dstream">
+                10. DStream
+              </a>
+            </li>
           </ul>
         </div>
         <div class="span9">
@@ -2610,8 +2620,10 @@ val spark = SparkSession.builder()
                       <div class="inner_cell">
                         <div class="text_cell_render border-box-sizing rendered_html">
                           <p>
-                            import org.apache.spark.sql.SparkSession</p>
-<p>val spark = SparkSession.builder.appName("miApp").master("local").getOrCreate()
+                            import org.apache.spark.sql.SparkSession
+                          </p>
+                          <p>
+                            val spark = SparkSession.builder.appName("miApp").master("local").getOrCreate()
                           </p>
                         </div>
                       </div>
@@ -2714,34 +2726,413 @@ val spark = SparkSession.builder()
               </h1>
             </div>
             <ul>
-              <li>Las <strong>Vistas</strong> permiten lanzar <strong>consultas SQL</strong> sobre los<strong> DataFrame</strong></li>
-              <li>Existen Vistas <strong>Temporales y Globales</strong> </li>
+              <li>
+                Las
+                <strong>
+                  Vistas
+                </strong>
+                permiten lanzar
+                <strong>
+                  consultas SQL
+                </strong>
+                sobre los
+                <strong>
+                  DataFrame
+                </strong>
+              </li>
+              <li>
+                Existen Vistas
+                <strong>
+                  Temporales y Globales
+                </strong>
+              </li>
             </ul>
             <hr>
-            <p><strong>Vistas Temporales:</strong></p>
-            <ul>
-              <li>Disponible únicamente en la sesión donde se crea.</li>
-              <li>Se ha de asignar un nombre a la <strong>Vista</strong> que será el <strong>nombre de la tabla</strong></li>
-            </ul>
-            <p>df.createOrReplaceTempview("nombre")</p>
-            <hr>
-            <p><strong>Vistas Globales:</strong></p>
-            <ul>
-              <li>Disponible en nuevas sesiones.</li>
-              <li>Se consulta añadiendo <strong>global_temp</strong> antes del nombre</li>
-            </ul>
-            <p>df.createOrReplaceTempview("people")</p>
-            <p>spark.sql("SELECT * FROM global_temp.people")</p>
-            <hr>
-            <div class="codigo-scala">
-              <div tabindex="-1" id="notebook" class="border-box-sizing">
+              <p>
+                <strong>
+                  Vistas Temporales:
+                </strong>
+              </p>
+              <ul>
+                <li>
+                  Disponible únicamente en la sesión donde se crea.
+                </li>
+                <li>
+                  Se ha de asignar un nombre a la
+                  <strong>
+                    Vista
+                  </strong>
+                  que será el
+                  <strong>
+                    nombre de la tabla
+                  </strong>
+                </li>
+              </ul>
+              <p>
+                df.createOrReplaceTempview("nombre")
+              </p>
+              <hr>
+                <p>
+                  <strong>
+                    Vistas Globales:
+                  </strong>
+                </p>
+                <ul>
+                  <li>
+                    Disponible en nuevas sesiones.
+                  </li>
+                  <li>
+                    Se consulta añadiendo
+                    <strong>
+                      global_temp
+                    </strong>
+                    antes del nombre
+                  </li>
+                </ul>
+                <p>
+                  df.createOrReplaceTempview("people")
+                </p>
+                <p>
+                  spark.sql("SELECT * FROM global_temp.people")
+                </p>
+                <hr>
+                  <div class="codigo-scala">
+                    <div class="border-box-sizing" id="notebook" tabindex="-1">
+                      <div id="notebook-container">
+                        <div class="cell border-box-sizing text_cell rendered">
+                          <div class="prompt input_prompt">
+                          </div>
+                          <div class="inner_cell">
+                            <div class="text_cell_render border-box-sizing rendered_html">
+                              <h2 id="Vistas-temporales:">
+                                Vistas temporales:
+                                <a class="anchor-link" href="#Vistas-temporales:">
+                                </a>
+                              </h2>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="cell border-box-sizing code_cell rendered">
+                          <div class="input">
+                            <div class="prompt input_prompt">
+                              In [1]:
+                            </div>
+                            <div class="inner_cell">
+                              <div class="input_area">
+                                <div class=" highlight hl-scala">
+                                  <pre><span></span><span class="c1">// carga de fichero</span>
+<span class="k">val</span> <span class="n">tweetJson</span> <span class="k">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">json</span><span class="o">(</span><span class="s">"./documentos/large-17-json"</span><span class="o">)</span>
+</pre>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="output_wrapper">
+                            <div class="output">
+                              <div class="output_area">
+                                <div class="prompt">
+                                </div>
+                                <div class="output_text output_subarea ">
+                                  <pre>Intitializing Scala interpreter ...</pre>
+                                </div>
+                              </div>
+                              <div class="output_area">
+                                <div class="prompt">
+                                </div>
+                                <div class="output_text output_subarea ">
+                                  <pre>Spark Web UI available at http://10.0.2.15:4040
+SparkContext available as 'sc' (version = 2.3.0, master = local[*], app id = local-1532257222616)
+SparkSession available as 'spark'
+</pre>
+                                </div>
+                              </div>
+                              <div class="output_area">
+                                <div class="prompt output_prompt">
+                                  Out[1]:
+                                </div>
+                                <div class="output_text output_subarea output_execute_result">
+                                  <pre>tweetJson: org.apache.spark.sql.DataFrame = [contributors: string, coordinates: struct<coordinates: array<double>, type: string> ... 22 more fields]
+</pre>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="cell border-box-sizing code_cell rendered">
+                          <div class="input">
+                            <div class="prompt input_prompt">
+                              In [10]:
+                            </div>
+                            <div class="inner_cell">
+                              <div class="input_area">
+                                <div class=" highlight hl-scala">
+                                  <pre><span></span><span class="c1">// crear Vista</span>
+<span class="n">tweetJson</span><span class="o">.</span><span class="n">createOrReplaceTempView</span><span class="o">(</span><span class="s">"tweets"</span><span class="o">)</span>
+</pre>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="cell border-box-sizing code_cell rendered">
+                          <div class="input">
+                            <div class="prompt input_prompt">
+                              In [11]:
+                            </div>
+                            <div class="inner_cell">
+                              <div class="input_area">
+                                <div class=" highlight hl-scala">
+                                  <pre><span></span><span class="k">val</span> <span class="n">usuarios</span> <span class="k">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="o">(</span><span class="s">"SELECT user.screen_name FROM tweets WHERE user.followers_count > 300000"</span><span class="o">)</span>
+<span class="n">usuarios</span><span class="o">.</span><span class="n">show</span><span class="o">()</span>
+</pre>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="output_wrapper">
+                            <div class="output">
+                              <div class="output_area">
+                                <div class="prompt">
+                                </div>
+                                <div class="output_subarea output_stream output_stdout output_text">
+                                  <pre>+--------------+
+|   screen_name|
++--------------+
+|   SpeakComedy|
+|      AnnCurry|
+|      AnnCurry|
+|       BBCNews|
+|           CNN|
+|       AndyBVB|
+|   TPO_Hisself|
+|          TIME|
+|HuffingtonPost|
+|     ObamaNews|
+|   TPO_Hisself|
+|       gmanews|
+|     wikileaks|
+|     nikestore|
+|       Foro_TV|
+|          Wale|
+|      politico|
+| DRUDGE_REPORT|
+|   UniNoticias|
+|      sherlyny|
++--------------+
+only showing top 20 rows
+
+</pre>
+                                </div>
+                              </div>
+                              <div class="output_area">
+                                <div class="prompt output_prompt">
+                                  Out[11]:
+                                </div>
+                                <div class="output_text output_subarea output_execute_result">
+                                  <pre>usuarios: org.apache.spark.sql.DataFrame = [screen_name: string]
+</pre>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="cell border-box-sizing code_cell rendered">
+                          <div class="input">
+                            <div class="prompt input_prompt">
+                              In [13]:
+                            </div>
+                            <div class="inner_cell">
+                              <div class="input_area">
+                                <div class=" highlight hl-scala">
+                                  <pre><span></span><span class="c1">// buscar tweets en español con mayor número de hashtags</span>
+<span class="k">val</span> <span class="n">tweetsSpanish</span> <span class="k">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="o">(</span><span class="s">"SELECT created_at, user.name, entities.hashtags.text FROM tweets WHERE lang = 'es' AND size(entities.hashtags.text) > 0"</span><span class="o">);</span>
+</pre>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="output_wrapper">
+                            <div class="output">
+                              <div class="output_area">
+                                <div class="prompt output_prompt">
+                                  Out[13]:
+                                </div>
+                                <div class="output_text output_subarea output_execute_result">
+                                  <pre>tweetsSpanish: org.apache.spark.sql.DataFrame = [created_at: string, name: string ... 1 more field]
+</pre>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="cell border-box-sizing code_cell rendered">
+                          <div class="input">
+                            <div class="prompt input_prompt">
+                              In [14]:
+                            </div>
+                            <div class="inner_cell">
+                              <div class="input_area">
+                                <div class=" highlight hl-scala">
+                                  <pre><span></span><span class="n">tweetsSpanish</span><span class="o">.</span><span class="n">show</span><span class="o">()</span>
+</pre>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="output_wrapper">
+                            <div class="output">
+                              <div class="output_area">
+                                <div class="prompt">
+                                </div>
+                                <div class="output_subarea output_stream output_stdout output_text">
+                                  <pre>+--------------------+--------------------+--------------------+
+|          created_at|                name|                text|
++--------------------+--------------------+--------------------+
+|Fri Dec 21 22:53:...|           elbabas11|            [currar]|
+|Fri Dec 21 22:53:...|         GO HEAD GUY|                [FF]|
+|Fri Dec 21 22:53:...|                    |                [ff]|
+|Fri Dec 21 22:53:...|                 *.*|[culpadelbaktúnmaya]|
+|Fri Dec 21 22:54:...|      MIL PALABRAS. |      [buenasnoches]|
+|Fri Dec 21 22:54:...|       soy un arroz-|  [PaRomeoConSuperQ]|
+|Fri Dec 21 22:54:...|         Over Again♥|           [Imagina]|
+|Fri Dec 21 22:54:...|   Diario Estrategia|[AHORA, abismofis...|
+|Fri Dec 21 22:54:...|           Jon Ayala|[TuitUtil, FF, Tu...|
+|Fri Dec 21 22:54:...|       A.C. New Camp|        [soundcloud]|
+|Fri Dec 21 22:54:...|              Emilia|      [FF, TuitUtil]|
+|Fri Dec 21 22:54:...|           Cupcake ღ|      [FF, TuitUtil]|
+|Fri Dec 21 22:54:...|     Nelson Barroeta|              [loba]|
+|Fri Dec 21 22:54:...|         rocio malik|[siyofuerasantacl...|
+|Fri Dec 21 22:54:...|               jonny|     [MartesDeTetas]|
+|Fri Dec 21 22:54:...|              Aldi †|   [EstoyComoQuiero]|
+|Fri Dec 21 22:54:...|      Lucía Luaces ♥|       [VALDOVELVET]|
+|Fri Dec 21 22:54:...|      Elena Iglesias|      [feliznavidad]|
+|Fri Dec 21 22:54:...|        ♬Hinojosa ⑨™|      [FF, TuitUtil]|
+|Fri Dec 21 22:54:...|            Ifigenia|[cancionesdeAgüitas]|
++--------------------+--------------------+--------------------+
+only showing top 20 rows
+
+</pre>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="cell border-box-sizing text_cell rendered">
+                          <div class="prompt input_prompt">
+                          </div>
+                          <div class="inner_cell">
+                            <div class="text_cell_render border-box-sizing rendered_html">
+                              <hr>
+                                <h2 id="Vistas-globales:">
+                                  Vistas globales:
+                                  <a class="anchor-link" href="#Vistas-globales:">
+                                  </a>
+                                </h2>
+                              </hr>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="cell border-box-sizing code_cell rendered">
+                          <div class="input">
+                            <div class="prompt input_prompt">
+                              In [17]:
+                            </div>
+                            <div class="inner_cell">
+                              <div class="input_area">
+                                <div class=" highlight hl-scala">
+                                  <pre><span></span><span class="c1">// se crea una nueva sesión</span>
+<span class="k">val</span> <span class="n">spark2</span> <span class="k">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">newSession</span><span class="o">()</span>
+</pre>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="output_wrapper">
+                            <div class="output">
+                              <div class="output_area">
+                                <div class="prompt output_prompt">
+                                  Out[17]:
+                                </div>
+                                <div class="output_text output_subarea output_execute_result">
+                                  <pre>spark2: org.apache.spark.sql.SparkSession = org.apache.spark.sql.SparkSession@1b8be9e9
+</pre>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="cell border-box-sizing code_cell rendered">
+                          <div class="input">
+                            <div class="prompt input_prompt">
+                              In [22]:
+                            </div>
+                            <div class="inner_cell">
+                              <div class="input_area">
+                                <div class=" highlight hl-scala">
+                                  <pre><span></span><span class="n">tweetJson</span><span class="o">.</span><span class="n">createOrReplaceGlobalTempView</span><span class="o">(</span><span class="s">"tweets_global"</span><span class="o">)</span>
+</pre>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="cell border-box-sizing code_cell rendered">
+                          <div class="input">
+                            <div class="prompt input_prompt">
+                              In [25]:
+                            </div>
+                            <div class="inner_cell">
+                              <div class="input_area">
+                                <div class=" highlight hl-scala">
+                                  <pre><span></span><span class="n">spark2</span><span class="o">.</span><span class="n">sql</span><span class="o">(</span><span class="s">"SELECT * FROM global_temp.tweets_global"</span><span class="o">)</span>
+</pre>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="output_wrapper">
+                            <div class="output">
+                              <div class="output_area">
+                                <div class="prompt output_prompt">
+                                  Out[25]:
+                                </div>
+                                <div class="output_text output_subarea output_execute_result">
+                                  <pre>res17: org.apache.spark.sql.DataFrame = [contributors: string, coordinates: struct<coordinates: array<double>, type: string> ... 22 more fields]
+</pre>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </hr>
+              </hr>
+            </hr>
+          </section>
+          <section id="structured-streaming">
+            <div class="page-header">
+              <h1>
+                9. Structured-Streaming
+              </h1>
+            </div>
+           <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div id="notebook-container">
 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Vistas-temporales:">Vistas temporales:<a class="anchor-link" href="#Vistas-temporales:"></a></h2>
+<h2 id="Structured-Streaming:">Structured Streaming:<a class="anchor-link" href="#Structured-Streaming:"></a></h2><ul>
+<li>Es un mecanismo de procesamiento en <strong>casi tiempo real</strong>.</li>
+<li>Tolerante a fallos.</li>
+<li>Se construye encima de SparkSQL. </li>
+<li>Se pueden realizar las mismas operaciones que con SparkSQL.</li>
+<li>La herramienta se encarga de gestionar el Streaming.</li>
+<li>Internamente las queris se transforman en varios procesos micro-batch.</li>
+</ul>
+
 </div>
 </div>
 </div>
@@ -2750,8 +3141,397 @@ val spark = SparkSession.builder()
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">// carga de fichero</span>
-<span class="k">val</span> <span class="n">tweetJson</span> <span class="k">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">json</span><span class="o">(</span><span class="s">&quot;./documentos/large-17-json&quot;</span><span class="o">)</span>
+<div class=" highlight hl-scala"><pre><span></span><span class="c1">//ejecutar variable session que viene creada por defecto</span>
+<span class="n">spark</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
+<div class="output_text output_subarea ">
+<pre>Intitializing Scala interpreter ...</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
+<div class="output_text output_subarea ">
+<pre>Spark Web UI available at http://10.0.2.15:4042
+SparkContext available as &#39;sc&#39; (version = 2.3.0, master = local[*], app id = local-1532310352270)
+SparkSession available as &#39;spark&#39;
+</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[1]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>res0: org.apache.spark.sql.SparkSession = org.apache.spark.sql.SparkSession@737164ff
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-scala"><pre><span></span><span class="c1">//Prueba de Streaming.</span>
+<span class="c1">//Se contarán las palabras introducidas desde un socket que se creará a continuación y desde el que se introducirán palabras.</span>
+
+<span class="c1">//crear socket en el puerto 9999</span>
+<span class="c1">//vagrant ssh (desde terminal windows)</span>
+<span class="c1">//nc -lk 9999</span>
+
+<span class="k">import</span> <span class="nn">org.apache.spark.sql.Row</span>
+<span class="k">import</span> <span class="nn">spark.implicits._</span>
+
+<span class="c1">//leer cada una de las entradas que pasarán a un DataFrame</span>
+<span class="k">val</span> <span class="n">lineas</span> <span class="k">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">readStream</span>
+    <span class="o">.</span><span class="n">format</span><span class="o">(</span><span class="s">&quot;socket&quot;</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">option</span><span class="o">(</span><span class="s">&quot;host&quot;</span><span class="o">,</span> <span class="s">&quot;localhost&quot;</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">option</span><span class="o">(</span><span class="s">&quot;port&quot;</span><span class="o">,</span> <span class="mi">9999</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">load</span><span class="o">()</span>
+
+<span class="c1">//se confirma que el canal está operativo.</span>
+<span class="n">lineas</span><span class="o">.</span><span class="n">isStreaming</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[5]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>import org.apache.spark.sql.Row
+import spark.implicits._
+lineas: org.apache.spark.sql.DataFrame = [value: string]
+res2: Boolean = true
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-scala"><pre><span></span><span class="c1">//dividir cada entrada desde socket en las distintas palabras y contarlas.</span>
+<span class="k">val</span> <span class="n">palabras</span> <span class="k">=</span> <span class="n">lineas</span><span class="o">.</span><span class="n">as</span><span class="o">[</span><span class="kt">String</span><span class="o">].</span><span class="n">flatMap</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">split</span><span class="o">(</span><span class="s">&quot; &quot;</span><span class="o">))</span>
+<span class="k">val</span> <span class="n">numPalabras</span> <span class="k">=</span> <span class="n">palabras</span><span class="o">.</span><span class="n">groupBy</span><span class="o">(</span><span class="s">&quot;value&quot;</span><span class="o">).</span><span class="n">count</span><span class="o">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[4]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>palabras: org.apache.spark.sql.Dataset[String] = [value: string]
+numPalabras: org.apache.spark.sql.DataFrame = [value: string, count: bigint]
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-scala"><pre><span></span><span class="c1">//ahora se lanza una query en Streaming sobre numPalabras</span>
+<span class="k">val</span> <span class="n">query</span> <span class="k">=</span> <span class="n">numPalabras</span><span class="o">.</span><span class="n">writeStream</span>
+    <span class="o">.</span><span class="n">format</span><span class="o">(</span><span class="s">&quot;console&quot;</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">outputMode</span><span class="o">(</span><span class="s">&quot;update&quot;</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">start</span><span class="o">()</span>
+
+<span class="c1">//para la query a los 60 segundos o hay un error</span>
+<span class="c1">//se introducen por terminal &quot;Hola mundo&quot;, &quot;Hola Mundo&quot;, &quot;Hola Mundo2&quot;</span>
+<span class="n">query</span><span class="o">.</span><span class="n">awaitTermination</span><span class="o">(</span><span class="mi">60000</span><span class="o">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>-------------------------------------------
+Batch: 0
+-------------------------------------------
++-----+-----+
+|value|count|
++-----+-----+
+| Hola|    1|
+|mundo|    1|
++-----+-----+
+
+-------------------------------------------
+Batch: 1
+-------------------------------------------
++------+-----+
+| value|count|
++------+-----+
+| Mundo|    1|
+|  Hola|    3|
+|Mundo2|    1|
++------+-----+
+
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>query: org.apache.spark.sql.streaming.StreamingQuery = org.apache.spark.sql.execution.streaming.StreamingQueryWrapper@2c4928c1
+res3: Boolean = false
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><hr></p>
+<h2 id="Como-funciona-SparkStream">Como funciona SparkStream<a class="anchor-link" href="#Como-funciona-SparkStream"></a></h2><p>La herramienta recibe los datos y los va almacenando en pequeños trozos en una tabla.<br>
+Cada determinado tiempo se efectuarán operaciones sobre los datos almacenados en la tabla.</p>
+<h3 id="Modos-de-salida-(gesti&#243;n-del-micro-batch):">Modos de salida (gesti&#243;n del micro-batch):<a class="anchor-link" href="#Modos-de-salida-(gesti&#243;n-del-micro-batch):"></a></h3><ul>
+<li><strong><em>Complete mode:</em></strong> La tabla va siempre creciendo y mostrando todos los resultados.</li>
+<li><strong><em>Append mode:</em></strong> Sólo muestra los contenidos nuevos.</li>
+<li><strong><em>Update mode:</em></strong> Sólo muestra los contenidos que se estén incrementando.</li>
+</ul>
+<p>Define lo que escribiremos a la salida y tiene restricciones con la query.</p>
+<h3 id="Fuentes-de-entrada:">Fuentes de entrada:<a class="anchor-link" href="#Fuentes-de-entrada:"></a></h3><ul>
+<li><strong>Socket:</strong> Suele ser usado para pruebas</li>
+<li><strong>Kafka:</strong> </li>
+<li><strong>Ficheros:</strong>  </li>
+</ul>
+<h3 id="Fuentes-de-salida:">Fuentes de salida:<a class="anchor-link" href="#Fuentes-de-salida:"></a></h3><ul>
+<li><strong>Consola:</strong> Suele ser usado para pruebas</li>
+<li><strong>Kafka:</strong> </li>
+<li><strong>Ficheros:</strong>   </li>
+<li><strong>Foreach:</strong> (recorrer cada uno de los RDD)</li>
+</ul>
+<hr>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-scala"><pre><span></span><span class="c1">//se comprueban los distintos tipos de fuentes Complete, Append y Update.</span>
+
+<span class="k">import</span> <span class="nn">org.apache.spark.sql.Row</span>
+<span class="k">import</span> <span class="nn">spark.implicits._</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-scala"><pre><span></span><span class="c1">//se crea de nuevo el cuentaPalabras.</span>
+<span class="k">val</span> <span class="n">lineas</span> <span class="k">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">readStream</span>
+    <span class="o">.</span><span class="n">format</span><span class="o">(</span><span class="s">&quot;socket&quot;</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">option</span><span class="o">(</span><span class="s">&quot;host&quot;</span><span class="o">,</span> <span class="s">&quot;localhost&quot;</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">option</span><span class="o">(</span><span class="s">&quot;port&quot;</span><span class="o">,</span> <span class="mi">9999</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">load</span><span class="o">()</span>
+
+<span class="k">val</span> <span class="n">palabras</span> <span class="k">=</span> <span class="n">lineas</span><span class="o">.</span><span class="n">as</span><span class="o">[</span><span class="kt">String</span><span class="o">].</span><span class="n">flatMap</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">split</span><span class="o">(</span><span class="s">&quot; &quot;</span><span class="o">))</span>
+<span class="k">val</span> <span class="n">numPalabras</span> <span class="k">=</span> <span class="n">palabras</span><span class="o">.</span><span class="n">groupBy</span><span class="o">(</span><span class="s">&quot;value&quot;</span><span class="o">).</span><span class="n">count</span><span class="o">()</span>
+
+<span class="c1">//se crea la query, se le dice que se va a pintar en modo complete y por consola.</span>
+<span class="k">val</span> <span class="n">query</span> <span class="k">=</span> <span class="n">numPalabras</span><span class="o">.</span><span class="n">writeStream</span>
+    <span class="o">.</span><span class="n">outputMode</span><span class="o">(</span><span class="s">&quot;complete&quot;</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">format</span><span class="o">(</span><span class="s">&quot;console&quot;</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">start</span><span class="o">()</span>
+
+<span class="c1">//Tiempo máximo de ejecución</span>
+<span class="n">query</span><span class="o">.</span><span class="n">awaitTermination</span><span class="o">(</span><span class="mi">60000</span><span class="o">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>-------------------------------------------
+Batch: 0
+-------------------------------------------
++-----+-----+
+|value|count|
++-----+-----+
+|Mundo|    1|
+| Hola|    1|
++-----+-----+
+
+-------------------------------------------
+Batch: 1
+-------------------------------------------
++-----+-----+
+|value|count|
++-----+-----+
+|Mundo|    2|
+| Hola|    2|
++-----+-----+
+
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[12]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>lineas: org.apache.spark.sql.DataFrame = [value: string]
+palabras: org.apache.spark.sql.Dataset[String] = [value: string]
+numPalabras: org.apache.spark.sql.DataFrame = [value: string, count: bigint]
+query: org.apache.spark.sql.streaming.StreamingQuery = org.apache.spark.sql.execution.streaming.StreamingQueryWrapper@4720f21c
+res9: Boolean = false
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-scala"><pre><span></span><span class="c1">//parar query</span>
+<span class="n">query</span><span class="o">.</span><span class="n">stop</span><span class="o">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><hr></p>
+<h3 id="Ingerir-datos-desde-Fichero-y-volcar-datos-a-Ficheros">Ingerir datos desde Fichero y volcar datos a Ficheros<a class="anchor-link" href="#Ingerir-datos-desde-Fichero-y-volcar-datos-a-Ficheros"></a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-scala"><pre><span></span><span class="c1">//se realizan las importaciones</span>
+<span class="c1">//se importa types para poder definir la estructura en la lectura de ficheros.</span>
+<span class="k">import</span> <span class="nn">org.apache.spark.sql.Row</span>
+<span class="k">import</span> <span class="nn">spark.implicits._</span>
+<span class="k">import</span> <span class="nn">org.apache.spark.sql.types._</span> 
+<span class="k">import</span> <span class="nn">org.apache.spark.sql.functions._</span>
+
+<span class="c1">//se crea el schema</span>
+<span class="k">val</span> <span class="n">schema</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">StructType</span><span class="o">().</span><span class="n">add</span><span class="o">(</span><span class="s">&quot;nombre&quot;</span><span class="o">,</span><span class="s">&quot;string&quot;</span><span class="o">).</span><span class="n">add</span><span class="o">(</span><span class="s">&quot;edad&quot;</span><span class="o">,</span><span class="s">&quot;long&quot;</span><span class="o">).</span><span class="n">add</span><span class="o">(</span><span class="s">&quot;sexo&quot;</span><span class="o">,</span><span class="s">&quot;string&quot;</span><span class="o">)</span>
 </pre></div>
 
 </div>
@@ -2784,7 +3564,7 @@ val spark = SparkSession.builder()
 
 <div class="output_text output_subarea ">
 <pre>Spark Web UI available at http://10.0.2.15:4040
-SparkContext available as &#39;sc&#39; (version = 2.3.0, master = local[*], app id = local-1532257222616)
+SparkContext available as &#39;sc&#39; (version = 2.3.0, master = local[*], app id = local-1532369085742)
 SparkSession available as &#39;spark&#39;
 </pre>
 </div>
@@ -2799,7 +3579,11 @@ SparkSession available as &#39;spark&#39;
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tweetJson: org.apache.spark.sql.DataFrame = [contributors: string, coordinates: struct&lt;coordinates: array&lt;double&gt;, type: string&gt; ... 22 more fields]
+<pre>import org.apache.spark.sql.Row
+import spark.implicits._
+import org.apache.spark.sql.types._
+import org.apache.spark.sql.functions._
+schema: org.apache.spark.sql.types.StructType = StructType(StructField(nombre,StringType,true), StructField(edad,LongType,true), StructField(sexo,StringType,true))
 </pre>
 </div>
 
@@ -2811,25 +3595,38 @@ SparkSession available as &#39;spark&#39;
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">// crear Vista</span>
-<span class="n">tweetJson</span><span class="o">.</span><span class="n">createOrReplaceTempView</span><span class="o">(</span><span class="s">&quot;tweets&quot;</span><span class="o">)</span>
-</pre></div>
+<div class=" highlight hl-scala"><pre><span></span><span class="c1">//ahora se indica de donde se han de leer los ficheros</span>
+<span class="c1">//para simular el streaming se irán copiando los ficheros desde ./documentos/personas/ a ./documentos/personasFinal/</span>
+<span class="c1">//cada fichero que entre a ./documentos/personasFinal/ será uno en a procesar.</span>
+<span class="k">val</span> <span class="n">personasDF</span> <span class="k">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">readStream</span>
+    <span class="o">.</span><span class="n">schema</span><span class="o">(</span><span class="n">schema</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">json</span><span class="o">(</span><span class="s">&quot;./documentos/personasFinal/&quot;</span><span class="o">)</span>
 
-</div>
-</div>
-</div>
+<span class="c1">//se crea una vista para hacer alguna consulta a los datos en streaming</span>
+<span class="n">personasDF</span><span class="o">.</span><span class="n">createOrReplaceTempView</span><span class="o">(</span><span class="s">&quot;personas&quot;</span><span class="o">)</span>
 
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">val</span> <span class="n">usuarios</span> <span class="k">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="o">(</span><span class="s">&quot;SELECT user.screen_name FROM tweets WHERE user.followers_count &gt; 300000&quot;</span><span class="o">)</span>
-<span class="n">usuarios</span><span class="o">.</span><span class="n">show</span><span class="o">()</span>
+<span class="c1">//se selecciona sexo y la media de edad por cada sexo.</span>
+<span class="k">val</span> <span class="n">mediaEdad</span> <span class="k">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="o">(</span><span class="s">&quot;SELECT sexo, avg(edad) FROM personas GROUP BY sexo&quot;</span><span class="o">)</span>
+
+<span class="c1">//la salida se realizará completa y por consola.</span>
+
+<span class="k">val</span> <span class="n">query</span> <span class="k">=</span> <span class="n">mediaEdad</span><span class="o">.</span><span class="n">writeStream</span>
+    <span class="o">.</span><span class="n">outputMode</span><span class="o">(</span><span class="s">&quot;complete&quot;</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">format</span><span class="o">(</span><span class="s">&quot;console&quot;</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">start</span><span class="o">()</span>
+
+<span class="n">query</span><span class="o">.</span><span class="n">awaitTermination</span><span class="o">(</span><span class="mi">90000</span><span class="o">)</span>
+
+<span class="c1">//si se quisiera haber guardado en un fichero en disco cambiaría el query.</span>
+<span class="c1">//el outputMode ha de ser &quot;append&quot; y una ruta para guardar</span>
+<span class="c1">// val query = mediaEdad.writeStream.outputMode(&quot;append&quot;)</span>
+<span class="c1">//   .format(&quot;json)</span>
+<span class="c1">//   .option(&quot;path&quot;, &quot;.documentos/personasFichero/mediaEdad&quot;)</span>
+<span class="c1">//   .option(&quot;checkpointLocation&quot;, &quot;.documentos/personasFichero/mediaEdad&quot;)</span>
+<span class="c1">//   .start()</span>
 </pre></div>
 
 </div>
@@ -2846,31 +3643,35 @@ SparkSession available as &#39;spark&#39;
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>+--------------+
-|   screen_name|
-+--------------+
-|   SpeakComedy|
-|      AnnCurry|
-|      AnnCurry|
-|       BBCNews|
-|           CNN|
-|       AndyBVB|
-|   TPO_Hisself|
-|          TIME|
-|HuffingtonPost|
-|     ObamaNews|
-|   TPO_Hisself|
-|       gmanews|
-|     wikileaks|
-|     nikestore|
-|       Foro_TV|
-|          Wale|
-|      politico|
-| DRUDGE_REPORT|
-|   UniNoticias|
-|      sherlyny|
-+--------------+
-only showing top 20 rows
+<pre>-------------------------------------------
+Batch: 0
+-------------------------------------------
++----+---------+
+|sexo|avg(edad)|
++----+---------+
+|   M|     24.0|
+|   H|     29.0|
++----+---------+
+
+-------------------------------------------
+Batch: 1
+-------------------------------------------
++----+---------+
+|sexo|avg(edad)|
++----+---------+
+|   M|     23.0|
+|   H|    30.25|
++----+---------+
+
+-------------------------------------------
+Batch: 2
+-------------------------------------------
++----+------------------+
+|sexo|         avg(edad)|
++----+------------------+
+|   M|31.333333333333332|
+|   H|30.333333333333332|
++----+------------------+
 
 </pre>
 </div>
@@ -2878,13 +3679,16 @@ only showing top 20 rows
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[11]:</div>
+<div class="prompt output_prompt">Out[4]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>usuarios: org.apache.spark.sql.DataFrame = [screen_name: string]
+<pre>personasDF: org.apache.spark.sql.DataFrame = [nombre: string, edad: bigint ... 1 more field]
+mediaEdad: org.apache.spark.sql.DataFrame = [sexo: string, avg(edad): double]
+query: org.apache.spark.sql.streaming.StreamingQuery = org.apache.spark.sql.execution.streaming.StreamingQueryWrapper@3dcb0cbe
+res2: Boolean = false
 </pre>
 </div>
 
@@ -2894,13 +3698,41 @@ only showing top 20 rows
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><hr></p>
+<h2 id="VENTANAS-Y-WATERMARK">VENTANAS Y WATERMARK<a class="anchor-link" href="#VENTANAS-Y-WATERMARK"></a></h2><p><strong>ventanas de tiempo:</strong> Tratamiento de los datos por un espacio temporal concreto.
+Las ventanas de tiempo se repiten por espacio de tiempo mayor o menor al tamaño de la ventana originando solapamiento de datos o perdidas.</p>
+<p>//ejemplo del procesamiento para una ventana de 10 segundos procesada cada 5 seguntos.
+val numPalabras = palabras.groupBy(window($"timestamp","10 seconds","5 seconds",$"value").count()</p>
+<p><strong>watermark:</strong> Las marcas de agua se pensaron para esperar por los datos que llegan con retraso. Los datos recuperados por las watermark se posicionan en el lugar que les correspondería de no haberse ocurrido el retraso.
+Se ha de definir un tiempo de actuación de watermark.</p>
+<p>val numPalabras = palabras
+    . withWatermark($"timestamp","10 seconds")
+    .groupBy(window($"timestamp","10 seconds", "5 seconds", $"value").count()</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">// buscar tweets en español con mayor número de hashtags</span>
-<span class="k">val</span> <span class="n">tweetsSpanish</span> <span class="k">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="o">(</span><span class="s">&quot;SELECT created_at, user.name, entities.hashtags.text FROM tweets WHERE lang = &#39;es&#39; AND size(entities.hashtags.text) &gt; 0&quot;</span><span class="o">);</span>
+<div class=" highlight hl-scala"><pre><span></span><span class="c1">//ejemplo de Ventana de Tiempo</span>
+<span class="c1">//el includeTimestamp hace que cada linea que introduzcamos por el sochet incluya un timestamp</span>
+<span class="k">import</span> <span class="nn">java.sql.Timestamp</span>
+<span class="k">import</span> <span class="nn">org.apache.spark.sql.Row</span>
+<span class="k">import</span> <span class="nn">spark.implicits._</span>
+
+<span class="k">val</span> <span class="n">lineas</span> <span class="k">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">readStream</span>
+    <span class="o">.</span><span class="n">format</span><span class="o">(</span><span class="s">&quot;socket&quot;</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">option</span><span class="o">(</span><span class="s">&quot;host&quot;</span><span class="o">,</span> <span class="s">&quot;localhost&quot;</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">option</span><span class="o">(</span><span class="s">&quot;port&quot;</span><span class="o">,</span> <span class="mi">9999</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">option</span><span class="o">(</span><span class="s">&quot;includeTimestamp&quot;</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">load</span><span class="o">()</span>
 </pre></div>
 
 </div>
@@ -2913,13 +3745,16 @@ only showing top 20 rows
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[13]:</div>
+<div class="prompt output_prompt">Out[9]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tweetsSpanish: org.apache.spark.sql.DataFrame = [created_at: string, name: string ... 1 more field]
+<pre>import java.sql.Timestamp
+import org.apache.spark.sql.Row
+import spark.implicits._
+lineas: org.apache.spark.sql.DataFrame = [value: string, timestamp: timestamp]
 </pre>
 </div>
 
@@ -2934,7 +3769,35 @@ only showing top 20 rows
 <div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="n">tweetsSpanish</span><span class="o">.</span><span class="n">show</span><span class="o">()</span>
+<div class=" highlight hl-scala"><pre><span></span><span class="c1">//se crea un cuenta palabras y lo pasamos a DF</span>
+<span class="c1">//line._1 indica el primer argumento, line_.2 para el segundo</span>
+
+<span class="k">val</span> <span class="n">palabras</span> <span class="k">=</span> <span class="n">lineas</span><span class="o">.</span><span class="n">as</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Timestamp</span><span class="o">)].</span><span class="n">flatMap</span><span class="o">(</span><span class="n">line</span> <span class="k">=&gt;</span>
+                    <span class="n">line</span><span class="o">.</span><span class="n">_1</span><span class="o">.</span><span class="n">split</span><span class="o">(</span><span class="s">&quot; &quot;</span><span class="o">).</span><span class="n">map</span><span class="o">(</span><span class="n">word</span> <span class="k">=&gt;</span> <span class="o">(</span><span class="n">word</span><span class="o">,</span> <span class="n">line</span><span class="o">.</span><span class="n">_2</span><span class="o">)))</span>
+                    <span class="o">.</span><span class="n">toDF</span><span class="o">(</span><span class="s">&quot;palabra&quot;</span><span class="o">,</span> <span class="s">&quot;timestamp&quot;</span><span class="o">)</span>
+
+<span class="c1">//ahora se agrupa las palabras, se cuentan y se crean las ventanas.</span>
+<span class="k">val</span> <span class="n">windowCount</span> <span class="k">=</span> <span class="n">palabras</span><span class="o">.</span><span class="n">groupBy</span><span class="o">(</span>
+                <span class="n">window</span><span class="o">(</span><span class="n">$</span><span class="s">&quot;timestamp&quot;</span><span class="o">,</span> <span class="s">&quot;10 seconds&quot;</span><span class="o">,</span> <span class="s">&quot;5 seconds&quot;</span><span class="o">),</span> 
+                <span class="n">$</span><span class="s">&quot;palabra&quot;</span><span class="o">)</span>
+                <span class="o">.</span><span class="n">count</span><span class="o">()</span>
+
+<span class="c1">//ahora se agrupa las palabras, se cuentan y se crean las ventanas.</span>
+<span class="c1">//añadiendo marca de agua</span>
+<span class="c1">//val windowCount = palabras</span>
+<span class="c1">//                .withWatermark(&quot;timestamp&quot;, &quot;15 seconds&quot;)</span>
+<span class="c1">//                .groupBy(</span>
+<span class="c1">//                window($&quot;timestamp&quot;, &quot;10 seconds&quot;, &quot;5 seconds&quot;), </span>
+<span class="c1">//                $&quot;palabra&quot;)</span>
+<span class="c1">//                .count()</span>
+
+<span class="c1">//se realiza la query y se añade el parametro truncate para que no muestre timestamps partidos</span>
+<span class="k">val</span> <span class="n">query</span> <span class="k">=</span> <span class="n">windowCount</span><span class="o">.</span><span class="n">writeStream</span><span class="o">.</span><span class="n">outputMode</span><span class="o">(</span><span class="s">&quot;update&quot;</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">format</span><span class="o">(</span><span class="s">&quot;console&quot;</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">option</span><span class="o">(</span><span class="s">&quot;truncate&quot;</span><span class="o">,</span> <span class="kc">false</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">start</span><span class="o">()</span>
+
+<span class="n">query</span><span class="o">.</span><span class="n">awaitTermination</span><span class="o">(</span><span class="mi">90000</span><span class="o">)</span>
 </pre></div>
 
 </div>
@@ -2951,56 +3814,162 @@ only showing top 20 rows
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>+--------------------+--------------------+--------------------+
-|          created_at|                name|                text|
-+--------------------+--------------------+--------------------+
-|Fri Dec 21 22:53:...|           elbabas11|            [currar]|
-|Fri Dec 21 22:53:...|         GO HEAD GUY|                [FF]|
-|Fri Dec 21 22:53:...|                    |                [ff]|
-|Fri Dec 21 22:53:...|                 *.*|[culpadelbaktúnmaya]|
-|Fri Dec 21 22:54:...|      MIL PALABRAS. |      [buenasnoches]|
-|Fri Dec 21 22:54:...|       soy un arroz-|  [PaRomeoConSuperQ]|
-|Fri Dec 21 22:54:...|         Over Again♥|           [Imagina]|
-|Fri Dec 21 22:54:...|   Diario Estrategia|[AHORA, abismofis...|
-|Fri Dec 21 22:54:...|           Jon Ayala|[TuitUtil, FF, Tu...|
-|Fri Dec 21 22:54:...|       A.C. New Camp|        [soundcloud]|
-|Fri Dec 21 22:54:...|              Emilia|      [FF, TuitUtil]|
-|Fri Dec 21 22:54:...|           Cupcake ღ|      [FF, TuitUtil]|
-|Fri Dec 21 22:54:...|     Nelson Barroeta|              [loba]|
-|Fri Dec 21 22:54:...|         rocio malik|[siyofuerasantacl...|
-|Fri Dec 21 22:54:...|               jonny|     [MartesDeTetas]|
-|Fri Dec 21 22:54:...|              Aldi †|   [EstoyComoQuiero]|
-|Fri Dec 21 22:54:...|      Lucía Luaces ♥|       [VALDOVELVET]|
-|Fri Dec 21 22:54:...|      Elena Iglesias|      [feliznavidad]|
-|Fri Dec 21 22:54:...|        ♬Hinojosa ⑨™|      [FF, TuitUtil]|
-|Fri Dec 21 22:54:...|            Ifigenia|[cancionesdeAgüitas]|
-+--------------------+--------------------+--------------------+
-only showing top 20 rows
+<pre>-------------------------------------------
+Batch: 0
+-------------------------------------------
++------------------------------------------+-------+-----+
+|window                                    |palabra|count|
++------------------------------------------+-------+-----+
+|[1970-01-18 17:39:30, 1970-01-18 17:39:40]|Hola   |1    |
+|[1970-01-18 17:39:30, 1970-01-18 17:39:40]|mundo  |1    |
+|[1970-01-18 17:39:25, 1970-01-18 17:39:35]|Hola   |1    |
+|[1970-01-18 17:39:25, 1970-01-18 17:39:35]|mundo  |1    |
++------------------------------------------+-------+-----+
+
+-------------------------------------------
+Batch: 1
+-------------------------------------------
++------------------------------------------+--------+-----+
+|window                                    |palabra |count|
++------------------------------------------+--------+-----+
+|[1970-01-18 17:39:30, 1970-01-18 17:39:40]|Hola    |2    |
+|[1970-01-18 17:39:30, 1970-01-18 17:39:40]|de      |1    |
+|[1970-01-18 17:39:25, 1970-01-18 17:39:35]|de      |1    |
+|[1970-01-18 17:39:25, 1970-01-18 17:39:35]|conexion|1    |
+|[1970-01-18 17:39:30, 1970-01-18 17:39:40]|prueba  |1    |
+|[1970-01-18 17:39:25, 1970-01-18 17:39:35]|Hola    |2    |
+|[1970-01-18 17:39:30, 1970-01-18 17:39:40]|conexion|1    |
+|[1970-01-18 17:39:25, 1970-01-18 17:39:35]|prueba  |1    |
++------------------------------------------+--------+-----+
+
+-------------------------------------------
+Batch: 2
+-------------------------------------------
++------------------------------------------+-------+-----+
+|window                                    |palabra|count|
++------------------------------------------+-------+-----+
+|[1970-01-18 17:39:30, 1970-01-18 17:39:40]|Adios  |1    |
+|[1970-01-18 17:39:25, 1970-01-18 17:39:35]|Adios  |1    |
++------------------------------------------+-------+-----+
+
+-------------------------------------------
+Batch: 3
+-------------------------------------------
++------------------------------------------+-------+-----+
+|window                                    |palabra|count|
++------------------------------------------+-------+-----+
+|[1970-01-18 17:39:30, 1970-01-18 17:39:40]|de     |2    |
+|[1970-01-18 17:39:25, 1970-01-18 17:39:35]|de     |2    |
++------------------------------------------+-------+-----+
+
+-------------------------------------------
+Batch: 4
+-------------------------------------------
++------------------------------------------+-------+-----+
+|window                                    |palabra|count|
++------------------------------------------+-------+-----+
+|[1970-01-18 17:39:25, 1970-01-18 17:39:35]|donde  |1    |
+|[1970-01-18 17:39:30, 1970-01-18 17:39:40]|donde  |1    |
++------------------------------------------+-------+-----+
 
 </pre>
 </div>
 </div>
 
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[14]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>palabras: org.apache.spark.sql.DataFrame = [palabra: string, timestamp: timestamp]
+windowCount: org.apache.spark.sql.DataFrame = [window: struct&lt;start: timestamp, end: timestamp&gt;, palabra: string ... 1 more field]
+query: org.apache.spark.sql.streaming.StreamingQuery = org.apache.spark.sql.execution.streaming.StreamingQueryWrapper@1134f51f
+res8: Boolean = false
+</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-scala"><pre><span></span><span class="n">query</span><span class="o">.</span><span class="n">stop</span><span class="o">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+    </div>
+  </div>
+          </section>
+          <section id="dstream">
+            <div class="page-header">
+              <h1>
+                10. DStream
+              </h1>
+            </div>
+            <ul>
+              <li>Uso en Streaming continuo de datos</li>
+              <li>Internamente son un conjunto de RDDs creados a intervalos de tiempo</li>
+              <li>Escalable y tolerante a fallos</li>
+              <li>Divide los datos en batches y los procesa por separado</li>
+          </ul>
+          <div class="codigo-scala">
+            <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div id="notebook-container">
+
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<h2 id="Vistas-globales:">Vistas globales:<a class="anchor-link" href="#Vistas-globales:"></a></h2>
+<h3 id="StreamingContext">StreamingContext<a class="anchor-link" href="#StreamingContext"></a></h3><ul>
+<li>Se crea a partir de una configuración y una duración.</li>
+<li>Igual que SparkContext en SparkSQL pero para SparkStreaming.</li>
+<li>Se crea a partir de una variable de configuración "conf".</li>
+<li>Tiene su constructor propio "StreamingContext".</li>
+<li>Lleva un argumento temporal que indica cada cuanto tiempo se ha de procesar.</li>
+</ul>
+<p>val conf = new
+SparkConf().setAppName("miApp).setMaster("local[2]")</p>
+<p>val ssc = new StreamingContext(conf, Seconds(1))</p>
+<p><strong>Flujo de ejecución:</strong></p>
+<ul>
+<li>Definir las fuentes</li>
+<li>Realizar las operaciones/transformaciones</li>
+<li>Comenzar el streaming con la función start()</li>
+<li>Esperar a que el procesamiento finalice o podamos pararlo con la función stop()</li>
+</ul>
+<p><strong>Puntos a tener en cuenta:</strong></p>
+<ul>
+<li>Una vez paramos el contexto, no se puede reiniciar.</li>
+<li>Sólo podemos tener activo un contexto a la vez en un JVM.</li>
+<li>La función stop() también para el SparkContext.<hr></li>
+</ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">// se crea una nueva sesión</span>
-<span class="k">val</span> <span class="n">spark2</span> <span class="k">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">newSession</span><span class="o">()</span>
+<div class=" highlight hl-scala"><pre><span></span><span class="c1">//se realizan las importaciones para manejo de DStream.</span>
+
+<span class="k">import</span> <span class="nn">org.apache.spark._</span>
+<span class="k">import</span> <span class="nn">org.apache.spark.streaming._</span>
+<span class="k">import</span> <span class="nn">org.apache.spark.streaming.StreamingContext</span>
 </pre></div>
 
 </div>
@@ -3013,13 +3982,15 @@ only showing top 20 rows
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[17]:</div>
+<div class="prompt output_prompt">Out[2]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>spark2: org.apache.spark.sql.SparkSession = org.apache.spark.sql.SparkSession@1b8be9e9
+<pre>import org.apache.spark._
+import org.apache.spark.streaming._
+import org.apache.spark.streaming.StreamingContext
 </pre>
 </div>
 
@@ -3031,23 +4002,18 @@ only showing top 20 rows
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="n">tweetJson</span><span class="o">.</span><span class="n">createOrReplaceGlobalTempView</span><span class="o">(</span><span class="s">&quot;tweets_global&quot;</span><span class="o">)</span>
-</pre></div>
+<div class=" highlight hl-scala"><pre><span></span><span class="c1">//se crea la variable de configuración</span>
+<span class="c1">//se ha de indicar quien es el Master y el número de hilos</span>
+<span class="c1">//Como por defecto el notebook genera un SparkContext para poder generar ahora un StreamingContext se ha de poner la variable spark.driver.allowMultipleContext a true</span>
 
-</div>
-</div>
-</div>
+<span class="k">val</span> <span class="n">conf</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">SparkConf</span><span class="o">().</span><span class="n">setMaster</span><span class="o">(</span><span class="s">&quot;local[4]&quot;</span><span class="o">).</span><span class="n">setAppName</span><span class="o">(</span><span class="s">&quot;miApp&quot;</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">set</span><span class="o">(</span><span class="s">&quot;spark.driver.allowMultipleContexts&quot;</span><span class="o">,</span> <span class="s">&quot;true&quot;</span><span class="o">)</span>
 
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="n">spark2</span><span class="o">.</span><span class="n">sql</span><span class="o">(</span><span class="s">&quot;SELECT * FROM global_temp.tweets_global&quot;</span><span class="o">)</span>
+<span class="c1">//se crea el StreamingContext con la configuración y ejecución cada 5 segundos.</span>
+<span class="k">val</span> <span class="n">ssc</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">StreamingContext</span><span class="o">(</span><span class="n">conf</span><span class="o">,</span> <span class="nc">Seconds</span><span class="o">(</span><span class="mi">5</span><span class="o">))</span>
 </pre></div>
 
 </div>
@@ -3060,16 +4026,267 @@ only showing top 20 rows
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[25]:</div>
+<div class="prompt output_prompt">Out[3]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>res17: org.apache.spark.sql.DataFrame = [contributors: string, coordinates: struct&lt;coordinates: array&lt;double&gt;, type: string&gt; ... 22 more fields]
+<pre>conf: org.apache.spark.SparkConf = org.apache.spark.SparkConf@4f0626b6
+ssc: org.apache.spark.streaming.StreamingContext = org.apache.spark.streaming.StreamingContext@5a053b42
 </pre>
 </div>
 
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-scala"><pre><span></span><span class="c1">//se prepara para leer del socket</span>
+<span class="k">val</span> <span class="n">lines</span> <span class="k">=</span> <span class="n">ssc</span><span class="o">.</span><span class="n">socketTextStream</span><span class="o">(</span><span class="s">&quot;localhost&quot;</span><span class="o">,</span> <span class="mi">9999</span><span class="o">)</span>
+
+<span class="c1">//se crea un cuenta palabras leyendo desde el socket</span>
+<span class="k">val</span> <span class="n">palabras</span> <span class="k">=</span> <span class="n">lines</span><span class="o">.</span><span class="n">flatMap</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">split</span><span class="o">(</span><span class="s">&quot; &quot;</span><span class="o">))</span>
+
+<span class="k">val</span> <span class="n">pairs</span> <span class="k">=</span> <span class="n">palabras</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">w</span> <span class="k">=&gt;</span> <span class="o">(</span><span class="n">w</span><span class="o">,</span><span class="mi">1</span><span class="o">))</span>
+<span class="k">val</span> <span class="n">cuenta</span> <span class="k">=</span> <span class="n">pairs</span><span class="o">.</span><span class="n">reduceByKey</span><span class="o">((</span><span class="n">a</span><span class="o">,</span><span class="n">b</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">)</span>
+
+<span class="n">cuenta</span><span class="o">.</span><span class="n">print</span><span class="o">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[5]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>lines: org.apache.spark.streaming.dstream.ReceiverInputDStream[String] = org.apache.spark.streaming.dstream.SocketInputDStream@17af3da5
+palabras: org.apache.spark.streaming.dstream.DStream[String] = org.apache.spark.streaming.dstream.FlatMappedDStream@17129ff9
+pairs: org.apache.spark.streaming.dstream.DStream[(String, Int)] = org.apache.spark.streaming.dstream.MappedDStream@6001991b
+cuenta: org.apache.spark.streaming.dstream.DStream[(String, Int)] = org.apache.spark.streaming.dstream.ShuffledDStream@49c65a9e
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-scala"><pre><span></span><span class="c1">//start para comenzar</span>
+<span class="n">ssc</span><span class="o">.</span><span class="n">start</span><span class="o">()</span>
+<span class="n">ssc</span><span class="o">.</span><span class="n">awaitTerminationOrTimeout</span><span class="o">(</span><span class="mi">45000</span><span class="o">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>-------------------------------------------
+Time: 1532458015000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1532458020000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1532458025000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1532458030000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1532458035000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1532458040000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1532458045000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1532458050000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1532458055000 ms
+-------------------------------------------
+(Hola,1)
+(No,1)
+(Mundo,1)
+(Si,1)
+(Cada,1)
+(Vez,1)
+
+-------------------------------------------
+Time: 1532458060000 ms
+-------------------------------------------
+
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>res3: Boolean = false
+</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>-------------------------------------------
+Time: 1532458065000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1532458070000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1532458075000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1532458080000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1532458085000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1532458090000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1532458095000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1532458100000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1532458105000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1532458110000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1532458115000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1532458120000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1532458125000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1532458130000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1532458135000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1532458140000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1532458145000 ms
+-------------------------------------------
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-scala"><pre><span></span><span class="n">ssc</span><span class="o">.</span><span class="n">stop</span><span class="o">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>-------------------------------------------
+Time: 1532458150000 ms
+-------------------------------------------
+
+</pre>
+</div>
 </div>
 
 </div>
@@ -3078,8 +4295,8 @@ only showing top 20 rows
 </div>
     </div>
   </div>
-            </div>
-           </section>  
+          </div>
+          </section>
         </div>
       </div>
     </div>
