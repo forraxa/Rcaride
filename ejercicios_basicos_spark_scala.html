@@ -231,9 +231,13 @@ import org.apache.spark.SparkConf
 import org.apache.spark.SparkContext
 import org.apache.spark.rdd.RDD</code></pre>
 <pre><code>Intitializing Scala interpreter ...
+
+
+
 Spark Web UI available at http://10.0.2.15:4040
 SparkContext available as 'sc' (version = 2.3.0, master = local[*], app id = local-1531914833578)
 SparkSession available as 'spark'
+
 
 import org.apache.spark.SparkConf
 import org.apache.spark.SparkContext
@@ -301,6 +305,9 @@ La palabra fugiat tiene tamaño 6
 La palabra Excepteur tiene tamaño 9
 La palabra proident, tiene tamaño 9
 La palabra officia tiene tamaño 7
+
+
+
 
 
 mayor6: org.apache.spark.rdd.RDD[String] = MapPartitionsRDD[12] at filter at &lt;console&gt;:30
@@ -634,8 +641,6 @@ tweetsDF.show()</code></pre>
 +--------------------+---------------+---------+-------------+--------------------+----+------------------+--------------------+---------+---------------+
 only showing top 20 rows
 
-
-
 defined class Tweet
 tweetsDF: org.apache.spark.sql.DataFrame = [created_at: string, screen_name: string ... 8 more fields]</code></pre>
 <pre class="scala"><code>val tweetsDS = tweetsDF.toDF(&quot;fecha_creacion&quot;, &quot;usuario&quot;, &quot;isRT&quot;, &quot;numRT&quot;, 
@@ -672,7 +677,6 @@ val tweetSpanish = tweetsDS.filter($&quot;lang&quot; === &quot;es&quot;).select(
 |Yo cuando ponen l...|    sugardududu|
 +--------------------+---------------+
 only showing top 20 rows
-
 
 
 tweetSpanish: Unit = ()</code></pre>
@@ -742,7 +746,6 @@ h.show()</code></pre>
 only showing top 20 rows
 
 
-
 h: org.apache.spark.sql.Dataset[Array[String]] = [text: array&lt;string&gt;]</code></pre>
 <pre class="scala"><code>//se va a crear un cuenta hashtags para evaluar que hashtags se repiten más.
 //se crea un flatMap donde se mapea los elementos para crear un par clave-valor
@@ -775,7 +778,6 @@ pairs.show()</code></pre>
 only showing top 20 rows
 
 
-
 pairs: org.apache.spark.sql.Dataset[(String, Int)] = [_1: string, _2: int]</code></pre>
 <pre class="scala"><code>//convertir el dataset en dataframe, asignarle nombre a las columnas y agrupar por su Key
 val cuenta = pairs.toDF(&quot;key&quot;,&quot;value&quot;).groupBy(&quot;key&quot;).agg(sum(&quot;value&quot;))
@@ -805,7 +807,6 @@ cuenta.show()</code></pre>
 |          online|        14|
 +----------------+----------+
 only showing top 20 rows
-
 
 
 cuenta: org.apache.spark.sql.DataFrame = [key: string, sum(value): bigint]</code></pre>
@@ -853,6 +854,7 @@ cuentaOrdenada: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [key: s
 val count = tweetsJson.count()
 println(&quot;Contiene&quot; + count + &quot; tweets&quot;)</code></pre>
 <pre><code>Contiene515361 tweets
+
 
 count: Long = 515361</code></pre>
 <pre class="scala"><code>// Cuantos en inglés?
@@ -1137,8 +1139,6 @@ println(&quot;La cantidad de tweets en ingles es: &quot; + tweetsEn.count())</co
 
 La cantidad de tweets en ingles es: 356218
 
-
-
 tweetsEn: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [contributors: string, coordinates: struct&lt;coordinates: array&lt;double&gt;, type: string&gt; ... 22 more fields]</code></pre>
 <pre class="scala"><code>// ¿De cuantos usuarios distintos hay algún tweet en el fichero?
 val usuarios = tweetsJson.select(&quot;user.screen_name&quot;)
@@ -1203,7 +1203,6 @@ tweetOrdenado.select(&quot;usuario&quot;).limit(1).show()</code></pre>
 +-----------+
 
 
-
 tweetOrdenado: org.apache.spark.sql.Dataset[Tweet] = [fecha_creacion: string, usuario: string ... 2 more fields]</code></pre>
 </div>
 <div id="ejercicio-8---persistencia" class="section level3">
@@ -1243,6 +1242,7 @@ dataDS.show()</code></pre>
 only showing top 20 rows
 
 
+
 dataDS: org.apache.spark.sql.Dataset[Array[String]] = [value: array&lt;string&gt;]</code></pre>
 <pre class="scala"><code>// se filtran los que contengan la palabra &quot;data&quot;
 dataDS.filter(_.contains(&quot;data&quot;)).count()</code></pre>
@@ -1259,6 +1259,7 @@ dataDS.write.json(&quot;./documentos/datasetTweet&quot;)</code></pre>
 </ul>
 <pre class="scala"><code>val tweetsJson = spark.read.json(&quot;./documentos/large-17-json&quot;)</code></pre>
 <pre><code>Intitializing Scala interpreter ...
+
 
 Spark Web UI available at http://10.0.2.15:4041
 SparkContext available as 'sc' (version = 2.3.0, master = local[*], app id = local-1532271294323)
@@ -1346,10 +1347,6 @@ Batch: 1
 +------------+-------------+
 
 
-
-
-
-
 cursosDF: org.apache.spark.sql.DataFrame = [nombre: string, area: string ... 1 more field]
 cursosDuracionMayor: org.apache.spark.sql.DataFrame = [area: string, max(duracion): bigint]
 query: org.apache.spark.sql.streaming.StreamingQuery = org.apache.spark.sql.execution.streaming.StreamingQueryWrapper@7879fba2
@@ -1409,10 +1406,6 @@ Batch: 0
 only showing top 20 rows
 
 
-
-
-
-
 import spark.implicits._
 import org.apache.spark.sql.types._
 import java.sql.Timestamp
@@ -1422,6 +1415,222 @@ tweetsDF: org.apache.spark.sql.DataFrame = [created_at: timestamp, screen_name: 
 numTweets: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [screen_name: string, count: bigint]
 query: org.apache.spark.sql.streaming.StreamingQuery = org.apache.spark.sql.execution.streaming.StreamingQueryWrapper@1fa57e46
 res5: Boolean = false</code></pre>
+<hr>
+</div>
+<div id="ejercicio-12---join" class="section level3">
+<h3>Ejercicio 12 - Join</h3>
+<p>Dado un dataset que ya tenemos (estático), se leerá un nuevo dataset y se creará un Join en streaming. El dataset contendrá las variables nombre, puesto y salario.</p>
+<pre class="scala"><code>import org.apache.spark.sql.types._
+import org.apache.spark.sql.functions._
+
+import spark.implicits._
+
+//se crea la estructura que contrendrá los datos leidos.
+val schema = new StructType().add(&quot;nombre&quot;, &quot;string&quot;).add(&quot;puesto&quot;,&quot;string&quot;).add(&quot;salario&quot;,&quot;long&quot;)
+
+//se leen todos los ficheros
+val staticPersonas = spark.read.json(&quot;./documentos/personas/*&quot;)</code></pre>
+<pre><code>import org.apache.spark.sql.types._
+import org.apache.spark.sql.functions._
+import spark.implicits._
+schema: org.apache.spark.sql.types.StructType = StructType(StructField(nombre,StringType,true), StructField(puesto,StringType,true), StructField(salario,LongType,true))
+staticPersonas: org.apache.spark.sql.DataFrame = [edad: bigint, nombre: string ... 1 more field]</code></pre>
+<pre class="scala"><code>//ficheros que se leen en streaming
+val streamingSalarios = spark.readStream
+    .schema(schema)
+    .json(&quot;./documentos/personas_salarios&quot;)
+
+//unión de los ficheros. Se indican los ficheros y el campo por el que se quiere realizar el join.
+val both = streamingSalarios.join(staticPersonas, &quot;nombre&quot;)
+
+//ahora se creará una vista y con SQL se calculará la media de salario por puesto.
+both.createOrReplaceTempView(&quot;personas_salario&quot;)
+
+val mediaSalario = spark.sql(&quot;SELECT puesto, avg(salario) FROM personas_salario GROUP BY puesto&quot;)
+
+val query = mediaSalario.writeStream
+    .outputMode(&quot;complete&quot;)
+    .format(&quot;console&quot;)
+    .start()
+
+query.awaitTermination(90000)</code></pre>
+<pre><code>-------------------------------------------
+Batch: 0
+-------------------------------------------
++-------------+------------+
+|       puesto|avg(salario)|
++-------------+------------+
+|Desarrollador|        11.0|
+|     Analista|        15.0|
++-------------+------------+
+
+-------------------------------------------
+Batch: 1
+-------------------------------------------
++-------------+------------+
+|       puesto|avg(salario)|
++-------------+------------+
+|Desarrollador|        12.0|
+|     Analista|        17.0|
++-------------+------------+
+
+-------------------------------------------
+Batch: 2
+-------------------------------------------
++-------------+------------------+
+|       puesto|      avg(salario)|
++-------------+------------------+
+| JefeProyecto|              28.0|
+|Desarrollador|12.714285714285714|
+|     Analista|              17.0|
++-------------+------------------+
+
+
+streamingSalarios: org.apache.spark.sql.DataFrame = [nombre: string, puesto: string ... 1 more field]
+both: org.apache.spark.sql.DataFrame = [nombre: string, puesto: string ... 3 more fields]
+mediaSalario: org.apache.spark.sql.DataFrame = [puesto: string, avg(salario): double]
+query: org.apache.spark.sql.streaming.StreamingQuery = org.apache.spark.sql.execution.streaming.StreamingQueryWrapper@3d71130c
+res8: Boolean = false</code></pre>
+<pre class="scala"><code>//para obtener el id de la query
+query.id</code></pre>
+<pre><code>res9: java.util.UUID = 5871ddc1-2dd8-41bb-8de5-dcfa98d153ef</code></pre>
+<pre class="scala"><code>//información de la query
+query.explain()</code></pre>
+<pre><code>== Physical Plan ==
+WriteToDataSourceV2 org.apache.spark.sql.execution.streaming.sources.MicroBatchWriter@430dc3d6
++- *(5) HashAggregate(keys=[puesto#5566], functions=[avg(salario#5567L)])
+   +- StateStoreSave [puesto#5566], state info [ checkpoint = file:/tmp/temporary-78cf70d4-3979-4c2a-baad-6cfe6772a40f/state, runId = 6253af8e-6f52-416b-99e4-8783ac1f5274, opId = 0, ver = 2, numPartitions = 200], Complete, 0
+      +- *(4) HashAggregate(keys=[puesto#5566], functions=[merge_avg(salario#5567L)])
+         +- StateStoreRestore [puesto#5566], state info [ checkpoint = file:/tmp/temporary-78cf70d4-3979-4c2a-baad-6cfe6772a40f/state, runId = 6253af8e-6f52-416b-99e4-8783ac1f5274, opId = 0, ver = 2, numPartitions = 200]
+            +- *(3) HashAggregate(keys=[puesto#5566], functions=[merge_avg(salario#5567L)])
+               +- Exchange hashpartitioning(puesto#5566, 200)
+                  +- *(2) HashAggregate(keys=[puesto#5566], functions=[partial_avg(salario#5567L)])
+                     +- *(2) Project [puesto#5566, salario#5567L]
+                        +- *(2) BroadcastHashJoin [nombre#5565], [nombre#2434], Inner, BuildRight
+                           :- *(2) Project [nombre#5565, puesto#5566, salario#5567L]
+                           :  +- *(2) Filter isnotnull(nombre#5565)
+                           :     +- *(2) FileScan json [nombre#5565,puesto#5566,salario#5567L] Batched: false, Format: JSON, Location: InMemoryFileIndex[file:/vagrant/IPNB/Ejercicios/documentos/personas_salarios/salario3, file:/vagr..., PartitionFilters: [], PushedFilters: [IsNotNull(nombre)], ReadSchema: struct&lt;nombre:string,puesto:string,salario:bigint&gt;
+                           +- BroadcastExchange HashedRelationBroadcastMode(List(input[0, string, true]))
+                              +- *(1) Project [nombre#2434]
+                                 +- *(1) Filter isnotnull(nombre#2434)
+                                    +- *(1) FileScan json [nombre#2434] Batched: false, Format: JSON, Location: InMemoryFileIndex[file:/vagrant/IPNB/Ejercicios/documentos/personas/nombres1, file:/vagrant/IPNB/..., PartitionFilters: [], PushedFilters: [IsNotNull(nombre)], ReadSchema: struct&lt;nombre:string&gt;</code></pre>
+<pre class="scala"><code>//name de la query (no se le ha dado ninguno)
+query.name</code></pre>
+<pre><code>res11: String = null</code></pre>
+<pre class="scala"><code>//más información
+query.lastProgress</code></pre>
+<pre><code>res12: org.apache.spark.sql.streaming.StreamingQueryProgress =
+{
+  &quot;id&quot; : &quot;5871ddc1-2dd8-41bb-8de5-dcfa98d153ef&quot;,
+  &quot;runId&quot; : &quot;6253af8e-6f52-416b-99e4-8783ac1f5274&quot;,
+  &quot;name&quot; : null,
+  &quot;timestamp&quot; : &quot;2018-07-24T17:27:43.676Z&quot;,
+  &quot;batchId&quot; : 3,
+  &quot;numInputRows&quot; : 0,
+  &quot;inputRowsPerSecond&quot; : 0.0,
+  &quot;processedRowsPerSecond&quot; : 0.0,
+  &quot;durationMs&quot; : {
+    &quot;getOffset&quot; : 356,
+    &quot;triggerExecution&quot; : 356
+  },
+  &quot;stateOperators&quot; : [ {
+    &quot;numRowsTotal&quot; : 3,
+    &quot;numRowsUpdated&quot; : 0,
+    &quot;memoryUsedBytes&quot; : 18055
+  } ],
+  &quot;sources&quot; : [ {
+    &quot;description&quot; : &quot;FileStreamSource[file:/vagrant/IPNB/Ejercicios/documentos/personas_salarios]&quot;,
+    &quot;startOffset&quot; : {
+      &quot;logOffset&quot; : 2
+    },
+    &quot;endOffset&quot; : {
+      &quot;logOffset&quot; : 2
+    },
+    &quot;numInputRows&quot; : 0,
+    &quot;inputRowsPerSecond&quot; : 0.0,
+    &quot;...</code></pre>
+<pre class="scala"><code>//Comprobar si está activa la query
+query.isActive</code></pre>
+<pre><code>res13: Boolean = true</code></pre>
+<pre class="scala"><code>//para la query
+query.stop</code></pre>
+<hr>
+</div>
+<div id="ejercicio-13---ventanas-streaming" class="section level3">
+<h3>Ejercicio 13 - Ventanas Streaming</h3>
+<p>Crear RDD para ventana de datos de 10 segundos.</p>
+<pre class="scala"><code>//se realizan las importaciones para manejo de DStream.
+import org.apache.spark._
+import org.apache.spark.streaming._
+import org.apache.spark.streaming.StreamingContext
+
+val conf = new SparkConf().setMaster(&quot;local[4]&quot;).setAppName(&quot;miApp&quot;)
+    .set(&quot;spark.driver.allowMultipleContexts&quot;, &quot;true&quot;)
+
+//se crea el StreamingContext con la configuración y ejecución cada 5 segundos.
+val ssc = new StreamingContext(conf, Seconds(5))
+
+//se prepara para leer del socket
+val lines = ssc.socketTextStream(&quot;localhost&quot;, 9999)
+val linesWindows = lines.window(Seconds(10))
+
+//se crea un cuenta palabras leyendo desde el socket
+val palabras = linesWindows.flatMap(_.split(&quot; &quot;))
+
+val pairs = palabras.map(w =&gt; (w,1))
+val cuenta = pairs.reduceByKey((a,b) =&gt; a+b)
+
+cuenta.print()
+
+//start para comenzar
+ssc.start()
+ssc.awaitTerminationOrTimeout(45000)
+</code></pre>
+<hr>
+</div>
+<div id="ejercicio-14---datafram-y-dataset---streaming" class="section level3">
+<h3>Ejercicio 14 - DataFram y Dataset - Streaming</h3>
+<p>Ejemplo de cuenta palabras.</p>
+<pre class="scala"><code>//se realizan las importaciones para manejo de DStream.
+import org.apache.spark._
+import org.apache.spark.streaming._
+import org.apache.spark.streaming.StreamingContext
+import org.apache.spark.sql.SparkSession
+
+val conf = new SparkConf().setMaster(&quot;local[4]&quot;).setAppName(&quot;miApp&quot;)
+    .set(&quot;spark.driver.allowMultipleContexts&quot;, &quot;true&quot;)
+
+//se crea el StreamingContext con la configuración y ejecución cada 5 segundos.
+val ssc = new StreamingContext(conf, Seconds(5))
+
+//se prepara para leer del socket
+val lines = ssc.socketTextStream(&quot;localhost&quot;, 9999)
+
+
+//se crea un cuenta palabras leyendo desde el socket
+val palabras = lines.flatMap(_.split(&quot; &quot;))
+
+//para cada RDD que forman el String realizar...
+palabras.foreachRDD { rdd =&gt;
+    
+    //se crea variable SparkSession
+    val spark = SparkSession.builder.config(rdd.sparkContext.getConf).getOrCreate()
+    import spark.implicits._
+    
+    //se crea DF con una columna &quot;palabra&quot;
+    val palabrasDataFrame = rdd.toDF(&quot;palabra&quot;)
+    
+    //se crea una vista
+    palabrasDataFrame.createOrReplaceTempView(&quot;palabras&quot;)
+    
+    //se realiza una query
+    val cuentas = spark.sql(&quot;SELECT palabra, count(*) AS total FROM palabras GROUP BY palabra&quot;)
+    cuenta.show()
+}
+
+//start para comenzar
+ssc.start()
+ssc.awaitTerminationOrTimeout(60000)</code></pre>
 </div>
 </div>
 
