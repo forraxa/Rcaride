@@ -240,6 +240,7 @@ head(auto)</code></pre>
 ## 4     datsun 510 (sw)
 ## 5         amc gremlin
 ## 6          audi 100ls</code></pre>
+<hr />
 <div id="apply" class="section level3">
 <h3>apply</h3>
 <p>Válido para filas y columnas<br />
@@ -277,6 +278,7 @@ head(auto.2)</code></pre>
 ## [6,]         75</code></pre>
 <pre class="r"><code>class(auto.2)</code></pre>
 <pre><code>## [1] &quot;matrix&quot;</code></pre>
+<hr />
 </div>
 <div id="lapply" class="section level3">
 <h3>lapply</h3>
@@ -303,6 +305,7 @@ head(auto.3)</code></pre>
 ## [1] 1182229</code></pre>
 <pre class="r"><code>class(auto.3)</code></pre>
 <pre><code>## [1] &quot;list&quot;</code></pre>
+<hr />
 </div>
 <div id="sapply" class="section level3">
 <h3>sapply</h3>
@@ -315,6 +318,7 @@ head(auto.4)</code></pre>
 ##    1182229.0</code></pre>
 <pre class="r"><code>class(auto.4)</code></pre>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
+<hr />
 </div>
 <div id="tapply" class="section level3">
 <h3>tapply</h3>
@@ -330,6 +334,7 @@ head(auto.5)</code></pre>
 <pre class="r"><code>auto.5.1 &lt;- tapply(auto$acceleration, list(auto$cylinders, auto$mpg), mean)
 class(auto.5.1)</code></pre>
 <pre><code>## [1] &quot;matrix&quot;</code></pre>
+<hr />
 </div>
 <div id="by" class="section level3">
 <h3>by</h3>
